@@ -1,0 +1,33 @@
+:root {
+  --padding: 1rem;
+  --padding-0: 10px;
+  --border-radius-3: 7px;
+  --border-radius-2: 10px;
+  --border-radius-1: calc(var(--border-radius-2) + var(--padding));
+  --blocks-bg: #f2f6fc;
+  --color-1: hsl(217, 81%, 94%); 
+  --color-2: hsl(217, 81%, 90%);
+  --color-3: hsl(217, 81%, 86%);
+  --color-4: hsl(217, 81%, 82%);
+  --color-5: #D3E6CF;
+  --color-6: hsl(217, 81%, 50%);
+  --icons-color: #000000cc;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
