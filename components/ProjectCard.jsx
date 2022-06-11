@@ -3,14 +3,15 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
-import styles from './ProjectCard.module.css'
+import styles from '../styles/ProjectCard.module.css'
+
 export default class ProjectCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			github_user: props.github_user,
 			github_repo: props.github_repo,
-			load_github_data: props.load_github_data === undefined || props.load_github_data,
+			load_github_data: props.load_github_data === undefined || props.load_github_data, // default true
 			description: props.description || props.children,
 			name: props.name,
 			start: null,
@@ -18,7 +19,7 @@ export default class ProjectCard extends React.Component {
 			isLoaded: false,
 			git: null,
 			label: props.label,
-			label_color: '#CEC2FF',
+			label_color: props.label_color || '#CEC2FF',
 			min_height: props.min_height,
 		}
 
@@ -56,12 +57,12 @@ export default class ProjectCard extends React.Component {
 		}
 	}
 	render() {
-		const { isLoaded, name, description, stars, link, git, label, label_color, min_height } = this.state;
+		const { isLoaded, name, description, link, git, label, label_color, min_height } = this.state;
 		if (!isLoaded) {
 			return <div></div>
 		}
 		return (
-			<div className={styles.project_card} style={min_height? {height: 'min-content'} : {}}>
+			<div className={styles.project_card} style={min_height ? { height: 'min-content' } : {}}>
 				<div className={styles.name}>{name}</div>
 				{label &&
 					<div className={styles.label} style={{ backgroundColor: label_color }}>{label}</div>

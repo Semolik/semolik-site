@@ -25,6 +25,7 @@
     justify-content: center;
     padding: 5px;
     border-radius: var(--border-radius-2);
+    height: min-content;
 }
 
 .project_card .name {

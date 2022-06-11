@@ -1,0 +1,83 @@
+.last_fm_container {
+    overflow: hidden;
+    height: min-content;
+    background-color: #fff
+}
+
+.last_fm {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    font-size: 1.1em
+}
+
+.last_fm .img_container {
+    position: relative;
+    border-radius: var(--border-radius-2);
+    overflow: hidden;
+    padding-top: 100%;
+    aspect-ratio: 1
+}
+
+.last_fm .block {
+    grid-column: 2/4;
+    display: grid;
+    background-color: var(--blocks-bg);
+    border-radius: var(--border-radius-2);
+    word-break: break-all;
+    overflow: hidden
+}
+
+.last_fm .block>* {
+    transition: color .15s ease, background-color .15s ease
+}
+
+.last_fm .block>:hover {
+    background-color: var(--color-1)
+}
+
+.last_fm .name {
+    padding: 0 10px;
+    margin: 10px 30px;
+    margin-left: 70px
+}
+
+.last_fm .artist {
+    padding: 10px;
+}
+
+.last_fm .artist, .last_fm .name {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center
+}
+
+.last_fm .img_container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%
+}
+
+@media (max-width:576px) {
+    .last_fm {
+        grid-template-columns: 1fr
+    }
+
+    .last_fm_container {
+        grid-row: 2
+    }
+
+    .last_fm .block {
+        grid-column: auto
+    }
+}
+
+@media (min-width:1400px) {
+    .last_fm_container {
+        grid-column: -2;
+        grid-row: 2
+    }
+}

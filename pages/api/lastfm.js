@@ -36,16 +36,16 @@ export default function handler(req, res) {
 									nowplaying.image = image ? image[0]['#text'] : track.image[track.image.length - 1]['#text'];
 								}
 								response.nowplaying = nowplaying;
-
 							}
 						}
 					}
-					
 					cache.put('lastfm', response, 1000 * timeout);
 					send(res, response, timeout);
 					return resolve();
 				},
 				error: function (error) {
+					console.log('lastfm произошла ошибка');
+					console.log(error);
 					res.json(error);
 					res.status(405).end();
 					return resolve()
@@ -53,19 +53,4 @@ export default function handler(req, res) {
 			}
 		})
 	})
-
 }
-// export default async function handler(req, res) {
-// 	try {
-// 		const response = await getData();
-// 		res.statusCode = 200;
-// 		res.setHeader('Content-Type', 'application/json');
-// 		res.setHeader('Cache-Control', 'max-age=180000');
-// 		res.end(JSON.stringify(response));
-// 	}
-
-// 	catch (error) {
-// 		res.json(error);
-// 		res.status(405).end();
-// 	}
-// }
