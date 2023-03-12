@@ -80,8 +80,8 @@ watchEffect(() => {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    max-width: 1200px;
     width: 100%;
+    max-width: 1200px;
     $hover-color: rgba(
         $color: $text-color,
         $alpha: 0.2,

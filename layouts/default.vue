@@ -13,11 +13,13 @@
     min-height: 100vh;
     align-items: center;
     .app-content {
+        max-width: 1200px;
         flex: 1;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
+        padding: 10px;
     }
 }
 </style>
