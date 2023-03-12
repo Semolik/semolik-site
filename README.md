@@ -1,13 +1,42 @@
-### Установка
-### 1) Установите Node.js(12.22.0 или новее) и npm
-### 2) Установка зависимостей
-*  `npm install`
-### 3) Переименуйте `.env.dist` в `.env.local` и установите значения 
-### 4) Сборка
-*  `npm run build`
-### 5) Устанавливаем pm2 для демонизации
-*  `sudo npm install pm2 -g`
-* Запустим при помощи pm2
-* `pm2 start npm --name "my-site" -- start`
-* Добавляем автозапуск, для pm2 (если у вас не ubuntu найдите свою систему [тут](https://pm2.keymetrics.io/docs/usage/startup/#specifying-the-init-system))
-* `pm2 startup ubuntu`
+# Nuxt 3 Minimal Starter
+
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# yarn
+yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install
+```
+
+## Development Server
+
+Start the development server on http://localhost:3000
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
