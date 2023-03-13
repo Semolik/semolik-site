@@ -5,7 +5,15 @@ export default defineNuxtConfig({
         "@nuxtjs/google-fonts",
         "v-satori/nuxt",
         "unplugin-font-to-buffer/nuxt",
+        "@nuxt/devtools",
     ],
+    devtools: {
+        // Enable devtools (default: true)
+        enabled: true,
+        // VS Code Server options
+        vscode: {},
+        // ...other options
+    },
     googleFonts: {
         families: {
             "Open+Sans": true,

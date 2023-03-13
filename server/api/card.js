@@ -6,7 +6,7 @@ const openSans = fs.readFileSync("assets/fonts/OpenSans-Regular.ttf");
 
 export default eventHandler(async (event) => {
     const query = getQuery(event);
-    const colors = ["red", "orange", "yellow", "purple", "pink", "white"];
+    const colors = ["red", "orange", "yellow", "pink"];
     const randomIndex = Math.floor(Math.random() * colors.length);
     const color = colors[randomIndex];
     const svg = await satori(card, {

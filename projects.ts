@@ -38,7 +38,7 @@ const projects: ProjectType[] = [
         shortDescription: "Музыкальный сервис для начинающих музыкантов",
         description:
             "Музыкальный сервис для начинающих музыкантов. Это мой дипломный проект.",
-        image: "/images/1.jpg",
+        image: "/projects/SemolikMusic/1.png",
         tags: [
             ProjectTags.nuxt,
             ProjectTags.fastapi,
@@ -48,10 +48,7 @@ const projects: ProjectType[] = [
         git: "https://github.com/semolik/music",
         period: ["Ноябрь 2022 - сейчас"],
         status: [statuses.inProgress],
-        screenshots: [
-            "/images/SemolikMusic/1.jpg",
-            "/images/SemolikMusic/2.jpg",
-        ],
+        screenshots: ["/projects/SemolikMusic/1.png"],
         url: null,
         worksNow: false,
     },
