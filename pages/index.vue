@@ -1,6 +1,6 @@
 <template>
     <div class="index-page">
-        <Matter :words="words"></Matter>
+        <Technologies />
     </div>
 </template>
 <script setup>
