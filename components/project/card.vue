@@ -78,13 +78,14 @@ const { project } = defineProps<Props>();
                 flex-wrap: wrap;
                 gap: 5px;
                 .project-card__tag {
-                    padding: 3px 6px;
+                    padding: 2px 6px;
                     flex-grow: 1;
                     text-align: center;
-                    border-radius: 5px;
-                    background-color: $accent-color-secondary;
+                    border-radius: 10px;
+                    border: 1px solid $accent-color-secondary;
                     color: $text-color-secondary;
-                    font-size: 0.8rem;
+                    font-size: 0.9rem;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: $accent-color;

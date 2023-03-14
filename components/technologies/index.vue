@@ -12,9 +12,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     height: 100%;
     padding: 20px;
+    gap: 5px;
 }
 </style>
 
@@ -47,8 +49,13 @@ const technologies = [
     },
     {
         name: "SQLAlchemy",
-        color: "#003B57",
+        color: "#ffda44",
         icon: "vscode-icons:file-type-sql",
+    },
+    {
+        name: "PostgreSQL",
+        icon: "logos:postgresql",
+        color: "#336791",
     },
 ];
 </script>
