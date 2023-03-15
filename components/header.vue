@@ -37,7 +37,7 @@
 const links = [
     {
         name: "Проекты",
-        link: "/projects",
+        link: "/#projects",
     },
     {
         name: "Контакты",

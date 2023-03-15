@@ -1,5 +1,8 @@
 <template>
-    <div class="project-card">
+    <nuxt-link
+        class="project-card"
+        :to="{ name: 'projects-id', params: { id: project.id } }"
+    >
         <div class="project-card__image">
             <img :src="project.image" :alt="project.title" />
         </div>
@@ -20,12 +23,12 @@
                 {{ project.shortDescription }}
             </div>
         </div>
-    </div>
+    </nuxt-link>
 </template>
 <script setup lang="ts">
-import { ProjectType } from "@/projects";
+import { projectExport } from "@/projects";
 interface Props {
-    project: ProjectType;
+    project: projectExport;
 }
 const { project } = defineProps<Props>();
 </script>
@@ -39,6 +42,8 @@ const { project } = defineProps<Props>();
     background-color: $secondary-bg;
     transition: 0.1s ease-in-out;
     border: 1px solid transparent;
+    color: $text-color;
+    text-decoration: none;
 
     &:hover {
         border-color: $accent-color;

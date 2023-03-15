@@ -22,8 +22,8 @@ enum ProjectTags {
 declare interface ProjectType {
     title: string;
     shortDescription: string;
-    description: string;
     image: string;
+    head: string | null;
     tags: string[];
     git: string | null;
     period: string[];
@@ -32,13 +32,14 @@ declare interface ProjectType {
     worksNow: boolean;
     url: string | null;
 }
-const projects: ProjectType[] = [
+interface projectExport extends ProjectType {
+    id: string;
+}
+const projectsInfo: ProjectType[] = [
     {
         title: "Semolik music",
         shortDescription: "Музыкальный сервис для начинающих музыкантов",
-        description:
-            "Музыкальный сервис для начинающих музыкантов. Это мой дипломный проект.",
-        image: "/projects/SemolikMusic/1.png",
+        image: "/projects/SemolikMusic/main.png",
         tags: [
             ProjectTags.nuxt,
             ProjectTags.fastapi,
@@ -48,22 +49,20 @@ const projects: ProjectType[] = [
         git: "https://github.com/semolik/music",
         period: ["Ноябрь 2022 - сейчас"],
         status: [statuses.inProgress],
-        screenshots: ["/projects/SemolikMusic/1.png"],
+        screenshots: [
+            "/projects/SemolikMusic/1.png",
+            "/projects/SemolikMusic/2.png",
+            "/projects/SemolikMusic/3.png",
+            "/projects/SemolikMusic/4.png",
+        ],
         url: null,
         worksNow: false,
+        head: null,
     },
     {
         title: "AnimePlayer",
         shortDescription:
             "Сайт для просмотра аниме с сервисов Animevost и Anidub",
-        description:
-            "Сайт для просмотра аниме с сервисов Animevost и Anidub.\
-        Первый проект, в котором я использовал React.js.\
-        Api для получения данных сделано на flask. \
-        Было несколько попыток переписать проект, сначала на Vue.js в начале июле 2022 года,\
-        затем в декабре этого же года на Nuxt.js в ней была добавлена авторизация, и планировалось добавить еще много функций,\
-        но в итоге проект был отложен до лучших времен. \
-        На хостинге находится первая версия, которая была написана на React.js.",
         image: "/projects/AnimePlayer/1.png",
         tags: [ProjectTags.react, ProjectTags.flask],
         git: "https://github.com/Semolik/AnimePlayer",
@@ -82,17 +81,12 @@ const projects: ProjectType[] = [
         ],
         worksNow: true,
         url: "https://anime.semolik.ru",
+        head: null,
     },
     {
         title: "ASUtimetable",
         shortDescription:
             "Приложение для просмотра расписания занятий университета",
-        description:
-            "Приложение для просмотра расписания занятий университета. \
-            Мне не нравилось как выглядит расписание занятий в приложении университета, поэтому я решил написать свое. \
-            Расписание занятий парсилось с сайта университета. \
-            Приложение было написано на Vue.js. \n \
-            На данный момент структура сайта университета изменилась, поэтому приложение не работает, поддержка приложения прекращена.",
         image: "/projects/ASUtimetable/1.png",
         tags: [ProjectTags.vue, ProjectTags.fastapi, ProjectTags.redis],
         git: "https://github.com/Semolik/ASUtimetable",
@@ -106,67 +100,39 @@ const projects: ProjectType[] = [
         ],
         worksNow: false,
         url: null,
+        head: null,
     },
     {
         title: "Semolik bot",
         shortDescription: "Бот для Telegram c различными функциями",
-        description:
-            "Бот для Telegram. Бот был написан на Python с использованием библиотеки telethon. \
-            Идея появилась после того как я увидел популярного на то время userbot'a friendly-telegram и решил написать своего,\
-             в то время я только начинал изучать Python. До того как этот бот появился именно в виде бота, это был аккаунт, на котором был установлен userbot.\n \
-             На данный момент бот не поддерживается, в связи с этим он имеет ошибки но большинство функций работают. \
-             Так как его используют я решил не прекращать его работу. \n\
-             Он имеет много функций, вот некоторые из них: \n\
-            - Создание демотиваторов \n \
-            - Создание мемов \n \
-            - Создание стикерпаков \n \
-            - Скачивание музыки с YouTube \n \
-            - и многое другое",
-        image: "/projects/SemolikBot/avatar.jpg",
         tags: [ProjectTags.python, ProjectTags.telethon],
         git: null,
         period: ["Октябрь 2020 - Октябрь 2021"],
         status: [statuses.notSupported, statuses.done],
-        screenshots: ["/images/SemolikBot/1.jpg"],
+        screenshots: [],
         worksNow: true,
         url: "https://t.me/Semolik_bot",
+        head: "/projects/SemolikBot/slider.png",
+        image: "/projects/SemolikBot/avatar.jpg",
     },
     {
         title: "Car",
         shortDescription:
             "Машинка на радиоуправлении с Arduino и контроллером PS2",
-        description:
-            "Машинка на радиоуправлении с Arduino и контроллером PS2\n \
-            В проекте использовались следующие компоненты: \n \
-            - Arduino Nano \n \
-            - Контроллер и приемник PS2 джойстика \n \
-            - Платформа машинки \n \
-            - Аккумуляторы 18650 x2 \n \
-            - Драйвер l298n \n \
-            - Адресная лента ws2812b \n \
-            - Контроллер заряда \n \
-            - Корпус \n",
-        image: "/images/Car/1.jpg",
+        image: "/projects/Car/1.png",
         tags: [ProjectTags.arduino],
         git: "https://github.com/Semolik/Car",
         period: ["Январь 2023"],
         status: [statuses.done],
-        screenshots: ["/images/Car/1.jpg", "/images/Car/2.jpg"],
+        screenshots: [],
         worksNow: false,
         url: null,
+        head: "/projects/Car/slider.png",
     },
     {
         title: "AnimeVostPlayer",
         shortDescription:
             "Сайт для просмотра аниме с сервиса AnimeVost, один из моих первых сайтов",
-        description:
-            "Сайт для просмотра аниме с сервиса AnimeVost. Написан на чистом JavaScript.  Можно сказать первый опыт написания сайта и использования JavaScript.\n \
-            Он имеет следующие функции: \n \
-            - Просмотр недавно добавленных аниме \n \
-            - Просмотр аниме по жанрам (ограниченно) \n \
-            - Просмотр аниме по годам (ограниченно) \n \
-            - Сохренение аниме в избранное \n \
-            - Сохранение просмотренных серий \n",
         image: "/projects/AnimeVostPlayer/1.png",
         tags: [ProjectTags.javascript],
         git: "https://github.com/Semolik/AnimeVostPlayer",
@@ -180,7 +146,13 @@ const projects: ProjectType[] = [
         ],
         worksNow: true,
         url: "https://old-anime-player.semolik.ru",
+        head: null,
     },
 ];
-
-export { projects, ProjectType, ProjectTags, statuses };
+const projects: projectExport[] = (projectsInfo as projectExport[]).map(
+    (project) => {
+        project.id = project.title.toLowerCase().replace(/\s/g, "-");
+        return project;
+    }
+);
+export { projects, projectExport, ProjectTags, statuses };

@@ -6,6 +6,8 @@ export default defineNuxtConfig({
         "v-satori/nuxt",
         "unplugin-font-to-buffer/nuxt",
         "@nuxt/devtools",
+        "@nuxt/content",
+        "@element-plus/nuxt",
     ],
     devtools: {
         // Enable devtools (default: true)
@@ -19,12 +21,12 @@ export default defineNuxtConfig({
             "Open+Sans": true,
         },
     },
-
     vite: {
         css: {
             preprocessorOptions: {
                 scss: {
-                    additionalData: '@use "@/assets/styles/_colors.scss" as *;',
+                    additionalData:
+                        '@use "@/assets/styles/_colors.scss" as *;@use "@/assets/styles/breakpoints.scss" as *;',
                 },
             },
         },
