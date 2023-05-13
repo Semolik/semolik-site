@@ -143,9 +143,10 @@ watchEffect(() => {
                 background-color: $accent-color;
                 border-radius: 5px;
                 opacity: 0;
-                transition: background-color v-bind(linkTransitionMs);
+                transition: background-color v-bind(linkTransitionMs),
+                    opacity v-bind(linkTransitionMs);
             }
-            &.active-link {
+            &.active-link:not(:hover) {
                 color: $text-color;
                 &::after {
                     opacity: 1;

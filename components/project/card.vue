@@ -34,8 +34,9 @@ const { project } = defineProps<Props>();
 </script>
 <style lang="scss" scoped>
 .project-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    // flex-direction: column;
     $border-radius: 10px;
     border-radius: $border-radius;
     position: relative;
@@ -44,17 +45,16 @@ const { project } = defineProps<Props>();
     border: 1px solid transparent;
     color: $text-color;
     text-decoration: none;
-
+    overflow: hidden;
     &:hover {
         border-color: $accent-color;
     }
 
     &__image {
         width: 100%;
-        overflow: hidden;
+
         aspect-ratio: 16 / 9;
-        border-radius: $border-radius $border-radius 0 0;
-        overflow: hidden;
+        // border-radius: $border-radius $border-radius 0 0;
         img {
             width: 100%;
             height: 100%;
@@ -83,8 +83,8 @@ const { project } = defineProps<Props>();
                 flex-wrap: wrap;
                 gap: 5px;
                 .project-card__tag {
-                    padding: 2px 6px;
-                    flex-grow: 1;
+                    padding: 2px 20px;
+                    // flex-grow: 1;
                     text-align: center;
                     border-radius: 10px;
                     border: 1px solid $accent-color-secondary;

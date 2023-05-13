@@ -1,5 +1,5 @@
 import { satori } from "v-satori";
-import card from "@/components/card.vue";
+import card from "@/components/stack-card.vue";
 import fs from "fs";
 
 const openSans = fs.readFileSync("assets/fonts/OpenSans-Regular.ttf");

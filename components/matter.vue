@@ -5,6 +5,7 @@
 #drawhere {
     display: flex;
     width: 100%;
+    min-height: 90vh;
     flex: 1;
 }
 </style>
