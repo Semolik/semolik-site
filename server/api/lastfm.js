@@ -1,36 +1,111 @@
 import NodeCache from "node-cache";
 import { LastFmNode } from "lastfm";
-const { LAST_FM_API_KEY, LAST_FM_API_SECRET, LAST_FM_USERNAME } =
-    useRuntimeConfig().public;
+const {
+    LAST_FM_API_KEY,
+    LAST_FM_API_SECRET,
+    public: { LAST_FM_USERNAME },
+} = useRuntimeConfig();
 const lastfm = new LastFmNode({
     api_key: LAST_FM_API_KEY,
     secret: LAST_FM_API_SECRET,
     useragent: "lastfm-node",
 });
 const cache = new NodeCache();
+const getArtistInfo = (artist_mbid, name) => {
+    const cachedData = cache.get(`lastfm-artist-${artist_mbid}`);
+    if (cachedData) {
+        return cachedData;
+    }
+    return new Promise((resolve, reject) => {
+        lastfm.request("artist.getInfo", {
+            artist: name,
+            mbid: artist_mbid,
+            handlers: {
+                success: function (data) {
+                    var artist = data.artist;
+                    var artistInfo = {
+                        name: artist.name,
+                        image: artist.image[0]["#text"],
+                        url: artist.url,
+                    };
+
+                    cache.set(
+                        `lastfm-artist-${artist_mbid}`,
+                        artistInfo,
+                        60 * 60 * 24 * 7
+                    );
+                    return resolve(artistInfo);
+                },
+                error: function (error) {
+                    console.log("Error: " + error.message);
+                    return resolve(null);
+                },
+            },
+        });
+    });
+};
+const getTrackInfo = (artist, name) => {
+    const cachedData = cache.get(`lastfm-track-${artist}-${name}`);
+    if (cachedData) {
+        return cachedData;
+    }
+
+    return new Promise((resolve, reject) => {
+        lastfm.request("track.getInfo", {
+            artist: artist,
+            track: name,
+            username: LAST_FM_USERNAME,
+            handlers: {
+                success: function (data) {
+                    cache.set(`lastfm-track-${artist}-${name}`, data, 60);
+                    return resolve(data);
+                },
+                error: function (error) {
+                    console.log("Error: " + error.message);
+                    return resolve(null);
+                },
+            },
+        });
+    });
+};
 
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("lastfm");
     if (cachedData) {
         return cachedData;
     }
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         lastfm.request("user.getRecentTracks", {
             user: LAST_FM_USERNAME,
             limit: 1,
             handlers: {
-                success: function (data) {
+                success: async function (data) {
                     var track = data.recenttracks.track[0];
                     var nowplaying = null;
                     if (track) {
                         var attr = track["@attr"];
                         if (attr) {
-                            if (attr.nowplaying) {
+                            if (attr.nowplaying === "true") {
+                                var track_info = await getTrackInfo(
+                                    track.artist["#text"],
+                                    track.name
+                                );
+                                var artist_info = await getArtistInfo(
+                                    track.artist.mbid,
+                                    track.artist["#text"]
+                                );
+
                                 nowplaying = {
                                     name: track.name,
                                     album: track.album["#text"],
-                                    artist: track.artist["#text"],
+                                    artist: artist_info
+                                        ? artist_info
+                                        : {
+                                              name: track.artist["#text"],
+                                          },
+                                    plays: track_info.track.userplaycount,
                                 };
+
                                 if (track.image.length > 0) {
                                     var image = track.image.filter(
                                         (el) => el.size === "extralarge"
@@ -44,11 +119,11 @@ export default defineEventHandler(async (event) => {
                             }
                         }
                     }
-                    cache.set("lastfm", nowplaying, 60);
+                    cache.set("lastfm", nowplaying, 30);
                     return resolve(nowplaying);
                 },
                 error: function (error) {
-                    cache.set("lastfm", null, 60);
+                    cache.set("lastfm", null, 30);
                     return resolve(null);
                 },
             },

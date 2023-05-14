@@ -1,8 +1,8 @@
 <template>
     <Card
         v-if="activity"
-        :largeImage="activity.assets?.largeImage"
-        :largeText="activity.assets?.largeText"
+        :largeImage="activity?.assets?.largeImage"
+        :largeText="activity?.assets?.largeText"
         icon="ic:baseline-discord"
         :smallImage="activity.assets?.smallImage"
         :name="activity.name"
@@ -55,6 +55,6 @@ onMounted(() => {
     setInterval(async () => {
         const { data: newActivity } = await useFetch("/api/discord");
         activity.value = newActivity.value;
-    }, 60 * 1000);
+    }, 30 * 1000);
 });
 </script>

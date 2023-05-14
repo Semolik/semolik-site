@@ -5,7 +5,7 @@ const {
     DISCORD_SERVER_ID,
     DISCORD_USER_ID,
     DISCORD_SKIP_APPLICATIONS_IDS,
-} = useRuntimeConfig().public;
+} = useRuntimeConfig();
 const cache = new NodeCache();
 
 export default defineEventHandler(async (event) => {
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     });
     const member = await guild.members.fetch(DISCORD_USER_ID);
     if (!member?.presence?.activities || !member.presence.activities.length) {
-        cache.set("activities", null, 60);
+        cache.set("activities", null, 30);
         return null;
     }
     const activities = member.presence.activities.filter(
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
             !DISCORD_SKIP_APPLICATIONS_IDS.includes(activity.applicationId)
     );
     if (!activities.length) {
-        cache.set("activities", null, 60);
+        cache.set("activities", null, 30);
         return null;
     }
     let activity = activities[0];
@@ -50,6 +50,6 @@ export default defineEventHandler(async (event) => {
         }
     }
 
-    cache.set("activities", activity, 60);
+    cache.set("activities", activity, 30);
     return activity;
 });

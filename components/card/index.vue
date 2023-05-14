@@ -1,5 +1,8 @@
 <template>
-    <div class="discord-activity">
+    <div class="card">
+        <div class="discord-icon" v-if="largeImage" title="Discord">
+            <Icon name="ic:baseline-discord" />
+        </div>
         <div class="assets">
             <img
                 :src="largeImage"
@@ -20,7 +23,8 @@
             />
         </div>
         <div class="info">
-            <div class="name ellipsis">
+            <slot name="before" />
+            <div class="name ellipsis" v-if="name">
                 {{ name }}
             </div>
             <div class="details ellipsis" v-for="detail in details">
@@ -29,18 +33,20 @@
             <div class="details">
                 <slot name="details"></slot>
             </div>
+            <slot name="after" />
         </div>
     </div>
 </template>
 <script setup>
-defineProps({
+const props = defineProps({
+    imageSize: {
+        type: Number,
+        default: 80,
+    },
+
     largeImage: [String, null],
     largeText: [String, null],
-    icon: {
-        type: String,
-        default: null,
-        required: false,
-    },
+
     smallImage: {
         type: String,
         default: null,
@@ -51,25 +57,52 @@ defineProps({
         default: null,
         required: false,
     },
-    name: String,
+    name: {
+        type: String,
+        default: null,
+    },
     details: Array,
+    imageSizePx: {
+        type: String,
+    },
 });
+const imageSizePx = computed(() => props.imageSize + "px");
 </script>
 <style lang="scss" scoped>
-.discord-activity {
+.card {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    $image-size: v-bind(imageSizePx);
+    grid-template-columns: $image-size 1fr;
     gap: 10px;
     background-color: $secondary-bg;
     padding: 10px;
     border-radius: 16px;
     max-width: 350px;
     width: 100%;
+    position: relative;
+
+    @include md(true) {
+        max-width: 100%;
+    }
+    .discord-icon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: $text-color-tertiary;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
     .assets {
         position: relative;
         display: flex;
-        width: 80px;
-        height: 80px;
+        width: v-bind(imageSizePx);
+        height: v-bind(imageSizePx);
         .large-image {
             width: 100%;
             height: 100%;
@@ -103,10 +136,14 @@ defineProps({
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        justify-content: center;
         .name {
             font-weight: bold;
-
             font-size: 0.9rem;
+
+            span.marque-text {
+                margin-right: 10px;
+            }
         }
         .ellipsis {
             white-space: nowrap;

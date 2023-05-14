@@ -1,7 +1,9 @@
 <template>
     <div class="index-page">
-        <Discord />
-        <Lastfm />
+        <div class="activities">
+            <Lastfm />
+            <Discord />
+        </div>
         <!-- <Technologies />
      -->
         <!-- <Matter :words="words" /> -->
@@ -39,7 +41,12 @@ const words = [
     height: 100%;
     gap: 10px;
     flex: 1;
-    align-items: center;
+    .activities {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
     .projects-container {
         display: flex;
         flex-direction: column;

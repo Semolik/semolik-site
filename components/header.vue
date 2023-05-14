@@ -119,6 +119,9 @@ watchEffect(() => {
         gap: 1rem;
         position: relative;
         isolation: isolate;
+        @include lg(true) {
+            display: none;
+        }
 
         a {
             padding: 8px;
