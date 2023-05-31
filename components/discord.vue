@@ -7,6 +7,7 @@
         :smallImage="activity.assets?.smallImage"
         :name="activity.name"
         :details="details"
+        :smallText="activity.assets?.smallText"
     >
         <template #details>
             <div class="details ellipsis" v-if="timerText">

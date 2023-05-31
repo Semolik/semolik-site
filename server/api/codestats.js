@@ -1,26 +1,54 @@
 import NodeCache from "node-cache";
-const { CODESTATS_API_KEY, CODESTATS_USERNAME } = useRuntimeConfig();
+const { CODESTATS_USERNAME } = useRuntimeConfig().public;
+import { GraphQLClient, gql } from "graphql-request";
+const client = new GraphQLClient("https://codestats.net/profile-graphiql");
 const cache = new NodeCache();
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("codestats");
     if (cachedData) {
         return cachedData;
     }
-
     try {
-        const responce = await $fetch(
-            `https://codestats.net/api/users/${CODESTATS_USERNAME}`,
-            {
-                headers: {
-                    "X-API-KEY": CODESTATS_API_KEY,
-                },
+        const today = new Date();
+        var weekAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
+        const year = weekAgo.getFullYear();
+        const month = String(weekAgo.getMonth() + 1).padStart(2, "0");
+        const day = String(weekAgo.getDate()).padStart(2, "0");
+        const formattedDate = `${year}-${month}-${day}`;
+        const data = await client.request(gql`{
+            profile(username: "${CODESTATS_USERNAME}") {
+                dayLanguageXps(since: "${formattedDate}") {
+                date
+                language
+                xp
+                }
             }
+            }`);
+        if (!data?.profile?.dayLanguageXps) {
+            return null;
+        }
+        const dates = new Set(
+            data.profile.dayLanguageXps.map((item) => item.date)
         );
-        console.log(responce);
-        cache.set("codestats", responce, 30);
-        return responce;
+        const sortedDates = [...dates].sort().reverse();
+        const days = sortedDates.map((date) => ({
+            date,
+            ...convertLanguages(
+                data.profile.dayLanguageXps.filter((item) => item.date === date)
+            ),
+        }));
+        cache.set("codestats", days, 30);
+        return days;
     } catch (error) {
-        console.log(error);
-        return {};
+        return null;
     }
 });
+
+function convertLanguages(languages) {
+    const result = {};
+
+    for (const language of languages.sort((a, b) => b.xp - a.xp)) {
+        result[language.language] = language.xp;
+    }
+    return result;
+}

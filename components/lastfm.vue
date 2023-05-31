@@ -5,7 +5,7 @@
         target="_blank"
         :href="lastFmURL"
     >
-        <div class="lastfm-icon">
+        <div class="lastfm-icon" title="LastFM">
             <Icon name="mdi:lastfm" />
         </div>
         <img :src="currentTrack.image" alt="" class="bg" />
@@ -14,7 +14,6 @@
                 {{ currentTrack.artist.name }}
             </div>
         </div>
-
         <div class="track">
             <img :src="currentTrack.image" alt="" />
             <div class="info">
@@ -87,13 +86,7 @@ onMounted(() => {
         z-index: -1;
         transition: filter 0.3s ease;
     }
-    @include md {
-        &:hover {
-            .bg {
-                filter: blur(10px) brightness(0.5) contrast(1.2);
-            }
-        }
-    }
+
     .artist-info {
         display: flex;
         justify-content: space-between;

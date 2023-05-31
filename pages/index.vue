@@ -3,6 +3,7 @@
         <div class="activities">
             <Lastfm />
             <Discord />
+            <Codestats />
         </div>
         <!-- <Technologies />
      -->

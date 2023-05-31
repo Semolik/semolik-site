@@ -3,33 +3,40 @@
         <nuxt-link to="/" class="home-link" exact-active-class="active-link">
             <Icon name="material-symbols:home-rounded" />
         </nuxt-link>
-
-        <div class="links" @mouseleave="hoveredLink = null">
-            <nuxt-link
-                v-for="(link, index) in links"
-                :key="link.name"
-                :to="link.link"
-                @mouseenter="hoveredLink = index"
-                :class="{ active: hoveredLink === index }"
-                :id="`link-${index}`"
-                exact-active-class="active-link"
-            >
-                {{ link.name }}
-            </nuxt-link>
-
+        <div class="menu">
             <div
-                :class="[
-                    'link-highlight',
-                    {
-                        transitionActive: linkHighlightActive,
-                        active: hoveredLink !== null,
-                    },
-                ]"
-                :style="{
-                    width: `${linkHighlightWidth}px`,
-                    left: `${linkHighlightLeft}px`,
-                }"
-            ></div>
+                :class="['links', { active: menuActive }]"
+                @mouseleave="hoveredLink = null"
+            >
+                <nuxt-link
+                    v-for="(link, index) in links"
+                    :key="link.name"
+                    :to="link.link"
+                    @mouseenter="hoveredLink = index"
+                    :class="{ active: hoveredLink === index }"
+                    :id="`link-${index}`"
+                    exact-active-class="active-link"
+                >
+                    {{ link.name }}
+                </nuxt-link>
+
+                <div
+                    :class="[
+                        'link-highlight',
+                        {
+                            transitionActive: linkHighlightActive,
+                            active: hoveredLink !== null,
+                        },
+                    ]"
+                    :style="{
+                        width: `${linkHighlightWidth}px`,
+                        left: `${linkHighlightLeft}px`,
+                    }"
+                ></div>
+            </div>
+            <div class="menu-button">
+                <Icon name="material-symbols:menu" />
+            </div>
         </div>
     </div>
 </template>
@@ -73,6 +80,7 @@ watchEffect(() => {
         linkHighlightLeft.value = link.offsetLeft;
     }
 });
+const menuActive = ref(false);
 </script>
 <style lang="scss" scoped>
 .app-header {
@@ -85,6 +93,10 @@ watchEffect(() => {
     $hover-color: rgba(
         $color: $text-color,
         $alpha: 0.2,
+    );
+    $hover-color-2: rgba(
+        $color: $text-color,
+        $alpha: 0.3,
     );
     .home-link {
         display: flex;
@@ -113,66 +125,90 @@ watchEffect(() => {
             background-color: $hover-color;
         }
     }
-    .links {
+    .menu {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        position: relative;
-        isolation: isolate;
-        @include lg(true) {
-            display: none;
-        }
 
-        a {
-            padding: 8px;
-            border-radius: 8px;
-            color: $text-color-secondary;
-            text-decoration: none;
-            z-index: 1;
-            position: relative;
-            min-width: 100px;
-            text-align: center;
-            &.active {
+        .menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 10px;
+            background-color: $hover-color;
+
+            svg {
+                width: 20px;
+                height: 20px;
                 color: $text-color;
             }
 
-            &::after {
-                content: "";
+            &.active {
+                background-color: $hover-color-2;
+            }
+        }
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            isolation: isolate;
+            @include lg(true) {
+                display: none;
+            }
+
+            a {
+                padding: 8px;
+                border-radius: 8px;
+                color: $text-color-secondary;
+                text-decoration: none;
+                z-index: 1;
+                position: relative;
+                min-width: 100px;
+                text-align: center;
+                &.active {
+                    color: $text-color;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: $accent-color;
+                    border-radius: 5px;
+                    opacity: 0;
+                    transition: background-color v-bind(linkTransitionMs),
+                        opacity v-bind(linkTransitionMs);
+                }
+                &.active-link:not(:hover) {
+                    color: $text-color;
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .link-highlight {
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                width: 100%;
-                height: 2px;
-                background-color: $accent-color;
+                width: 0;
+                height: 100%;
+                z-index: 0;
+                background-color: transparent;
                 border-radius: 5px;
-                opacity: 0;
-                transition: background-color v-bind(linkTransitionMs),
-                    opacity v-bind(linkTransitionMs);
-            }
-            &.active-link:not(:hover) {
-                color: $text-color;
-                &::after {
-                    opacity: 1;
+
+                &.transitionActive {
+                    transition: all v-bind(linkTransitionMs) ease;
                 }
-            }
-        }
 
-        .link-highlight {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            z-index: 0;
-            background-color: transparent;
-            border-radius: 5px;
-
-            &.transitionActive {
-                transition: all v-bind(linkTransitionMs) ease;
-            }
-
-            &.active {
-                background-color: $hover-color;
+                &.active {
+                    background-color: $hover-color;
+                }
             }
         }
     }

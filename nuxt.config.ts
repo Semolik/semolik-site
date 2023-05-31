@@ -43,10 +43,11 @@ export default defineNuxtConfig({
             process.env.DISCORD_SKIP_APPLICATIONS_IDS,
         LAST_FM_API_KEY: process.env.LAST_FM_API_KEY,
         LAST_FM_API_SECRET: process.env.LAST_FM_API_SECRET,
-        CODESTATS_API_KEY: process.env.CODESTATS_API_KEY,
-        CODESTATS_USERNAME: process.env.CODESTATS_USERNAME,
+
         public: {
+            CODESTATS_USERNAME: process.env.CODESTATS_USERNAME,
             LAST_FM_USERNAME: process.env.LAST_FM_USERNAME,
+            GQL_HOST: "",
         },
     },
 });
