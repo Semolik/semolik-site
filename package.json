@@ -17,6 +17,7 @@
     "@nuxt/devtools": "^0.2.5",
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/google-fonts": "^3.0.0",
+    "chart.js": "^4.3.0",
     "discord.js": "^14.8.0",
     "graphql-request": "^6.1.0",
     "lastfm": "^0.9.4",
@@ -28,6 +29,7 @@
     "satori": "^0.4.2",
     "unplugin-font-to-buffer": "^0.1.4",
     "v-satori": "^0.1.9",
+    "vue-chartjs": "^5.2.0",
     "vue-marquee-text-component": "^2.0.1"
   }
 }

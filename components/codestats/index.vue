@@ -1,6 +1,6 @@
 <template>
     <ClientOnly>
-        <CodestatsChart :data="data" />
+        <CodestatsTestchart :data="data" />
     </ClientOnly>
 </template>
 <script setup>

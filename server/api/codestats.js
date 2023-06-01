@@ -5,9 +5,9 @@ const client = new GraphQLClient("https://codestats.net/profile-graphiql");
 const cache = new NodeCache();
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("codestats");
-    if (cachedData) {
-        return cachedData;
-    }
+    // if (cachedData) {
+    //     return cachedData;
+    // }
     try {
         const today = new Date();
         var weekAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
@@ -33,12 +33,26 @@ export default defineEventHandler(async (event) => {
         const sortedDates = [...dates].sort().reverse();
         const days = sortedDates.map((date) => ({
             date,
-            ...convertLanguages(
+            languages: convertLanguages(
                 data.profile.dayLanguageXps.filter((item) => item.date === date)
             ),
         }));
-        cache.set("codestats", days, 30);
-        return days;
+        const languages = [
+            ...new Set(
+                data.profile.dayLanguageXps.map((item) => item.language)
+            ),
+        ].sort();
+        const responce = {
+            labels: sortedDates,
+            datasets: languages.map((language) => ({
+                label: language,
+                data: days.map((day) => day.languages[language] || 0),
+                color: "#4a5568",
+            })),
+        };
+
+        // cache.set("codestats", responce, 30);
+        return responce;
     } catch (error) {
         return null;
     }
