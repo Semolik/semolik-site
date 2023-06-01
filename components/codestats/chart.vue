@@ -7,13 +7,6 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { Tooltip } from "@amcharts/amcharts5";
 
-// const { data } = defineProps({
-//     data: {
-//         type: Array,
-//         default: () => [],
-//     },
-// });
-
 export default {
     props: {
         data: {
@@ -21,8 +14,6 @@ export default {
         },
     },
     mounted() {
-        let data = this.data;
-
         let root = am5.Root.new(this.$refs.chartdiv);
         root._logo.dispose();
         root.setThemes([am5themes_Animated.new(root)]);
@@ -33,13 +24,30 @@ export default {
                 layout: root.verticalLayout,
             })
         );
-
+        const min = Math.min(
+            ...this.data
+                .map((item) =>
+                    Object.keys(item)
+                        .filter((key) => key !== "date")
+                        .map((key) => item[key])
+                )
+                .flat()
+        );
+        const max = Math.max(
+            ...this.data
+                .map((item) =>
+                    Object.keys(item)
+                        .filter((key) => key !== "date")
+                        .map((key) => item[key])
+                )
+                .flat()
+        );
         var yAxis = chart.yAxes.push(
             am5xy.ValueAxis.new(root, {
-                min: 0,
-                max: 100,
+                min: min,
+                max: max,
                 calculateTotals: true,
-                numberFormat: "#'%'",
+                numberFormat: "#.#",
                 renderer: am5xy.AxisRendererY.new(root, {}),
             })
         );
@@ -56,7 +64,22 @@ export default {
                 categoryField: "date",
             })
         );
-        xAxis.data.setAll(data);
+        let transformedData = this.data.map((item) => {
+            let transformedItem = {
+                date: item.date,
+            };
+
+            for (let key in item) {
+                if (key !== "date") {
+                    transformedItem[key] = item[key];
+                }
+            }
+
+            return transformedItem;
+        });
+
+        xAxis.data.setAll(transformedData);
+
         xAxis.get("renderer").labels.template.setAll({
             fill: root.interfaceColors.get("alternativeText"),
         });
@@ -64,15 +87,13 @@ export default {
         // Create series
         var series = chart.series.push(
             am5xy.LineSeries.new(root, {
-                name: "Series 1",
                 xAxis: xAxis,
                 yAxis: yAxis,
-                valueYField: "value",
+
                 categoryXField: "date",
-                tooltip: am5.Tooltip.new(root, {}),
             })
         );
-        series.data.setAll(data);
+        series.data.setAll(transformedData);
 
         // Add scrollbar
 

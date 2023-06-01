@@ -1,10 +1,7 @@
 <template>
     <div class="index-page">
-        <div class="activities">
-            <Lastfm />
-            <Discord />
-            <Codestats />
-        </div>
+        <div class="activities"></div>
+        <Codestats />
         <!-- <Technologies />
      -->
         <!-- <Matter :words="words" /> -->
