@@ -1,42 +1,35 @@
-# Nuxt 3 Minimal Starter
+Этот репозиторий содержит исходный код для создания моего персонального сайта портфолио. Вот основные функции, предоставляемые этим сайтом:
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+-   Текущий трек с Last.fm
+-   Статистика с CodeStats
+-   Discord Rich Presence
+-   Страницы с проектами
 
-## Setup
+Сайт разработывается с использованием фреймворка Nuxt.js версии 3. В настоящее время проект находится в активной разработке. Инструкции по локальному запуску:
 
-Make sure to install the dependencies:
+## Предварительные требования
 
-```bash
-# yarn
-yarn install
+Убедитесь, что у вас установлены следующие компоненты:
 
-# npm
-npm install
+-   Node.js (рекомендуемая версия 14.x или выше)
+-   npm (рекомендуемая версия 7.x или выше)
 
-# pnpm
-pnpm install
-```
+## Установка зависимостей
 
-## Development Server
+1.  Склонируйте репозиторий на свой локальный компьютер:
+    `git clone https://github.com/Semolik/semolik-site.git`
+2.  Перейдите в каталог проекта:
+    `cd semolik-site`
+3.  Установите зависимости, выполнив следующую команду:
+    `npm install`
 
-Start the development server on http://localhost:3000
+## Настройка проекта
 
-```bash
-npm run dev
-```
+Переименуйте файл `.env.dist` в `.env` и измените значение переменных.
 
-## Production
+## Запуск локального сервера разработки
 
-Build the application for production:
+После установки зависимостей можно запустить локальный сервер разработки:
+`npm run dev`
 
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+По умолчанию сайт будет доступен по адресу [http://localhost:3000](http://localhost:3000/).
