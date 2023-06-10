@@ -11,7 +11,7 @@
         <img :src="currentTrack.image" alt="" class="bg" />
         <div class="artist-info">
             <div class="artist-name ellipsis" title="Исполнитель">
-                {{ currentTrack.artist.name }}
+                {{ currentTrack.artist }}
             </div>
         </div>
         <div class="track">

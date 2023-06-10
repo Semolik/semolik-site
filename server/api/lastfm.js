@@ -11,39 +11,7 @@ const lastfm = new LastFmNode({
     useragent: "lastfm-node",
 });
 const cache = new NodeCache();
-const getArtistInfo = (artist_mbid, name) => {
-    const cachedData = cache.get(`lastfm-artist-${artist_mbid}`);
-    if (cachedData) {
-        return cachedData;
-    }
-    return new Promise((resolve, reject) => {
-        lastfm.request("artist.getInfo", {
-            artist: name,
-            mbid: artist_mbid,
-            handlers: {
-                success: function (data) {
-                    var artist = data.artist;
-                    var artistInfo = {
-                        name: artist.name,
-                        image: artist.image[0]["#text"],
-                        url: artist.url,
-                    };
 
-                    cache.set(
-                        `lastfm-artist-${artist_mbid}`,
-                        artistInfo,
-                        60 * 60 * 24 * 7
-                    );
-                    return resolve(artistInfo);
-                },
-                error: function (error) {
-                    console.log("Error: " + error.message);
-                    return resolve(null);
-                },
-            },
-        });
-    });
-};
 const getTrackInfo = (artist, name) => {
     const cachedData = cache.get(`lastfm-track-${artist}-${name}`);
     if (cachedData) {
@@ -90,19 +58,11 @@ export default defineEventHandler(async (event) => {
                                     track.artist["#text"],
                                     track.name
                                 );
-                                var artist_info = await getArtistInfo(
-                                    track.artist.mbid,
-                                    track.artist["#text"]
-                                );
 
                                 nowplaying = {
                                     name: track.name,
                                     album: track.album["#text"],
-                                    artist: artist_info
-                                        ? artist_info
-                                        : {
-                                              name: track.artist["#text"],
-                                          },
+                                    artist: track.artist["#text"],
                                     plays: track_info.track.userplaycount,
                                 };
 

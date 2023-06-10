@@ -1,6 +1,9 @@
 <template>
     <div class="index-page">
-        <div class="activities"></div>
+        <div class="activities">
+            <Lastfm />
+            <Discord />
+        </div>
         <Codestats />
         <!-- <Technologies />
      -->

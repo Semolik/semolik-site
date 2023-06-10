@@ -5,12 +5,12 @@ const client = new GraphQLClient("https://codestats.net/profile-graphiql");
 const cache = new NodeCache();
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("codestats");
-    // if (cachedData) {
-    //     return cachedData;
-    // }
+    if (cachedData) {
+        return cachedData;
+    }
     try {
         const today = new Date();
-        var weekAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
+        var weekAgo = new Date(today.getTime() - 7 * 2 * 24 * 60 * 60 * 1000);
         const year = weekAgo.getFullYear();
         const month = String(weekAgo.getMonth() + 1).padStart(2, "0");
         const day = String(weekAgo.getDate()).padStart(2, "0");
@@ -30,13 +30,26 @@ export default defineEventHandler(async (event) => {
         const dates = new Set(
             data.profile.dayLanguageXps.map((item) => item.date)
         );
-        const sortedDates = [...dates].sort().reverse();
+        const sortedDates = [...dates].sort();
+        const startDate = new Date(sortedDates[0]);
+        const endDate = new Date(sortedDates[sortedDates.length - 1]);
+        const currentDate = new Date(startDate);
+
+        while (currentDate <= endDate) {
+            const formattedDate = currentDate.toISOString().split("T")[0];
+            if (!sortedDates.includes(formattedDate)) {
+                sortedDates.push(formattedDate);
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        sortedDates.sort();
         const days = sortedDates.map((date) => ({
             date,
             languages: convertLanguages(
                 data.profile.dayLanguageXps.filter((item) => item.date === date)
             ),
         }));
+
         const languages = [
             ...new Set(
                 data.profile.dayLanguageXps.map((item) => item.language)
@@ -47,11 +60,17 @@ export default defineEventHandler(async (event) => {
             datasets: languages.map((language) => ({
                 label: language,
                 data: days.map((day) => day.languages[language] || 0),
-                color: "#4a5568",
             })),
         };
 
-        // cache.set("codestats", responce, 30);
+        if (
+            responce.datasets.every((dataset) =>
+                dataset.data.every((data) => data === 0)
+            )
+        ) {
+            return null;
+        }
+        cache.set("codestats", responce, 30);
         return responce;
     } catch (error) {
         return null;
