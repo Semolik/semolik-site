@@ -125,6 +125,7 @@ const chartOptions = ref({
         },
         y: {
             stacked: true,
+
             grid: {
                 drawBorder: false,
             },
@@ -141,9 +142,5 @@ const chartOptions = ref({
 .chart {
     width: 100%;
     height: 300px;
-
-    @include lg {
-        height: 400px;
-    }
 }
 </style>

@@ -3,9 +3,11 @@
         class="project-card"
         :to="{ name: 'projects-id', params: { id: project.id } }"
     >
-        <div class="project-card__image">
-            <img :src="project.image" :alt="project.title" />
-        </div>
+        <img
+            class="project-card__image"
+            :src="project.image"
+            :alt="project.title"
+        />
         <div class="project-card__content">
             <div class="project-info">
                 <div class="project-card__title">{{ project.title }}</div>
@@ -34,9 +36,8 @@ const { project } = defineProps<Props>();
 </script>
 <style lang="scss" scoped>
 .project-card {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
     $border-radius: 10px;
     border-radius: $border-radius;
     position: relative;
@@ -45,22 +46,18 @@ const { project } = defineProps<Props>();
     border: 1px solid transparent;
     color: $text-color;
     text-decoration: none;
-    overflow: hidden;
+
     &:hover {
         border-color: $accent-color;
     }
 
     &__image {
-        width: 100%;
-
+        border-radius: $border-radius $border-radius 0 0;
+        overflow: hidden;
         aspect-ratio: 16 / 9;
-        // border-radius: $border-radius $border-radius 0 0;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            user-select: none;
-        }
+
+        object-fit: cover;
+        user-select: none;
     }
     &__content {
         padding: 10px;
@@ -86,7 +83,7 @@ const { project } = defineProps<Props>();
                     padding: 2px 20px;
                     // flex-grow: 1;
                     text-align: center;
-                    border-radius: 10px;
+                    border-radius: 5px;
                     border: 1px solid $accent-color-secondary;
                     color: $text-color-secondary;
                     font-size: 0.9rem;

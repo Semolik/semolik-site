@@ -136,7 +136,7 @@ const menuActive = ref(false);
             height: 50px;
             width: 50px;
             border-radius: 10px;
-            background-color: $hover-color;
+            background-color: rgba($color: $text-color, $alpha: 0.1);
 
             svg {
                 width: 20px;

@@ -8,6 +8,7 @@
         :name="activity.name"
         :details="details"
         :smallText="activity.assets?.smallText"
+        discord
     >
         <template #details>
             <div class="details ellipsis" v-if="timerText">

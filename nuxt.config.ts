@@ -1,21 +1,10 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     modules: [
         "nuxt-icon",
         "@nuxtjs/google-fonts",
-        "v-satori/nuxt",
-        "unplugin-font-to-buffer/nuxt",
-        "@nuxt/devtools",
         "@nuxt/content",
         "@element-plus/nuxt",
     ],
-    devtools: {
-        // Enable devtools (default: true)
-        enabled: true,
-        // VS Code Server options
-        vscode: {},
-        // ...other options
-    },
     googleFonts: {
         families: {
             "Open+Sans": true,
@@ -47,7 +36,7 @@ export default defineNuxtConfig({
         public: {
             CODESTATS_USERNAME: process.env.CODESTATS_USERNAME,
             LAST_FM_USERNAME: process.env.LAST_FM_USERNAME,
-            GQL_HOST: "",
+            GITHUB_USERNAME: process.env.GITHUB_USERNAME,
         },
     },
 });

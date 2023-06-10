@@ -24,7 +24,6 @@ const { data } = await useFetch("/api/codestats");
     gap: 10px;
 
     .label {
-        font-weight: 600;
         color: $text-color-secondary;
         text-align: center;
         font-size: 1.2rem;

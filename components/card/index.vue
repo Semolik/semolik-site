@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="discord-icon" v-if="largeImage" title="Discord">
+        <div class="discord-icon" v-if="discord" title="Discord">
             <Icon name="ic:baseline-discord" />
         </div>
         <div class="assets">
@@ -65,6 +65,10 @@ const props = defineProps({
     imageSizePx: {
         type: String,
     },
+    discord: {
+        type: Boolean,
+        default: false,
+    },
 });
 const imageSizePx = computed(() => props.imageSize + "px");
 </script>
@@ -80,7 +84,7 @@ const imageSizePx = computed(() => props.imageSize + "px");
     max-width: 350px;
     width: 100%;
     position: relative;
-
+    height: min-content;
     @include md(true) {
         max-width: 100%;
     }
