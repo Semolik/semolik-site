@@ -1,7 +1,6 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: "Open Sans";
     background-color: $main-bg;
     color: $text-color;
 }
@@ -10,4 +9,5 @@ body {
     box-sizing: border-box;
     transition: background-color 0.2s, color 0.2s, opacity 0.2s;
     scroll-behavior: smooth;
+    font-family: "Open Sans", sans-serif;
 }

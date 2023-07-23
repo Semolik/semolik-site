@@ -3,7 +3,6 @@ export default defineNuxtConfig({
         "nuxt-icon",
         "@nuxtjs/google-fonts",
         "@nuxt/content",
-        "@element-plus/nuxt",
         "nuxt-viewport",
     ],
     viewport: {
@@ -22,8 +21,8 @@ export default defineNuxtConfig({
         families: {
             "Open+Sans": true,
         },
-        download: true,
-        fontsDir: "~/assets/fonts",
+        // download: true,
+        // fontsDir: "~/assets/fonts",
     },
     vite: {
         css: {
