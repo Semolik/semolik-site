@@ -1,8 +1,13 @@
 <template>
     <div class="index-page">
         <div class="activities">
-            <Lastfm class="lastfm" />
-            <Discord class="discord" />
+            <Teleport
+                to="#activities"
+                :disabled="$viewport.isLessThan('xxxxl')"
+            >
+                <Lastfm class="lastfm" />
+                <Discord class="discord" />
+            </Teleport>
         </div>
         <Codestats />
         <Projects />
@@ -23,9 +28,12 @@ useHead({
     flex: 1;
     .activities {
         display: flex;
-        flex-direction: column;
         gap: 10px;
         width: 100%;
+
+        &:empty {
+            display: none;
+        }
     }
 }
 </style>

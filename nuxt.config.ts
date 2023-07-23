@@ -4,7 +4,20 @@ export default defineNuxtConfig({
         "@nuxtjs/google-fonts",
         "@nuxt/content",
         "@element-plus/nuxt",
+        "nuxt-viewport",
     ],
+    viewport: {
+        breakpoints: {
+            xs: 360,
+            sm: 576,
+            md: 768,
+            lg: 992,
+            xl: 1200,
+            xxl: 1400,
+            xxxl: 1600,
+            xxxxl: 1900,
+        },
+    },
     googleFonts: {
         families: {
             "Open+Sans": true,

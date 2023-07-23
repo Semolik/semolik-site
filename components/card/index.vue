@@ -85,7 +85,7 @@ const imageSizePx = computed(() => props.imageSize + "px");
     width: 100%;
     position: relative;
     height: min-content;
-    @include md(true) {
+    @include lg(true) {
         max-width: 100%;
     }
     .discord-icon {

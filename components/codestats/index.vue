@@ -10,7 +10,18 @@
 <script setup>
 const { CODESTATS_USERNAME } = useRuntimeConfig().public;
 const codestatsUrl = `https://codestats.net/users/${CODESTATS_USERNAME}`;
-const { data } = await useFetch("/api/codestats");
+const data = ref([]);
+const fetch = async () => {
+    const {
+        data: { value: fetchedData },
+    } = await useFetch("/api/codestats");
+
+    data.value = fetchedData;
+};
+await fetch();
+onMounted(() => {
+    setInterval(fetch, 60 * 1000);
+});
 </script>
 <style lang="scss" scoped>
 .codestats-chart {
@@ -19,7 +30,7 @@ const { data } = await useFetch("/api/codestats");
     display: flex;
     flex-direction: column;
     background-color: $secondary-bg;
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 10px;
     gap: 10px;
 
@@ -33,7 +44,7 @@ const { data } = await useFetch("/api/codestats");
         text-decoration: none;
         color: $text-color-secondary;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 6px;
         background-color: $tetriary-bg;
         text-align: center;
 

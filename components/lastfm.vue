@@ -5,10 +5,10 @@
         target="_blank"
         :href="lastFmURL"
     >
+        <img :src="currentTrack.image" alt="" class="bg" />
         <div class="lastfm-icon" title="LastFM">
             <Icon name="mdi:lastfm" />
         </div>
-        <img :src="currentTrack.image" alt="" class="bg" />
         <div class="artist-info">
             <div class="artist-name ellipsis" title="Исполнитель">
                 {{ currentTrack.artist }}
@@ -61,7 +61,7 @@ onMounted(() => {
     isolation: isolate;
     overflow: hidden;
     gap: 10px;
-    @include md(true) {
+    @include lg(true) {
         max-width: 100%;
     }
     .lastfm-icon {

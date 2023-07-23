@@ -47,9 +47,7 @@ const colors = {
     Batch: "#c1f12e",
     PHP: "#4f5d95",
     Ini: "#d1dbe0",
-
     "Shell Script": "#89e051",
-
     editorconfig: "#ffc20f",
     YAML: "#cb171e",
     prisma: "#38bdae",
@@ -109,7 +107,7 @@ const chartOptions = ref({
             position: "nearest",
             callbacks: {
                 label: (context) => {
-                    return `${context.dataset.label}: ${context.parsed.y} XP`; // Скрыть значения, равные нулю
+                    return `${context.dataset.label}: ${context.parsed.y} XP`;
                 },
             },
             itemSort: (a, b) => b.parsed.y - a.parsed.y,

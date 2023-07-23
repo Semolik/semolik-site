@@ -43,19 +43,19 @@ const { project } = defineProps<Props>();
     position: relative;
     background-color: $secondary-bg;
     transition: 0.1s ease-in-out;
-    border: 1px solid transparent;
+    outline: 1px solid transparent;
     color: $text-color;
     text-decoration: none;
 
     &:hover {
-        border-color: $accent-color;
+        // border-color: $accent-color;
+        background-color: $quaternary-bg;
     }
 
     &__image {
         border-radius: $border-radius $border-radius 0 0;
         overflow: hidden;
         aspect-ratio: 16 / 9;
-
         object-fit: cover;
         user-select: none;
     }

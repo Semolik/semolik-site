@@ -1,35 +1,36 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@element-plus/nuxt": "^1.0.4",
-    "@nuxt/content": "^2.5.2",
-    "nuxt": "^3.2.3"
-  },
-  "dependencies": {
-    "@amcharts/amcharts5": "^5.3.14",
-    "@nuxt/http": "^0.6.4",
-    "@nuxtjs/google-fonts": "^3.0.0",
-    "@octokit/rest": "^19.0.11",
-    "chart.js": "^4.3.0",
-    "discord.js": "^14.8.0",
-    "graphql-request": "^6.1.0",
-    "lastfm": "^0.9.4",
-    "matter-js": "^0.19.0",
-    "node-cache": "^5.1.2",
-    "nuxt-icon": "^0.3.2",
-    "poly-decomp": "^0.3.0",
-    "sass": "^1.59.2",
-    "satori": "^0.4.2",
-    "unplugin-font-to-buffer": "^0.1.4",
-    "v-satori": "^0.1.9",
-    "vue-chartjs": "^5.2.0",
-    "vue-marquee-text-component": "^2.0.1"
-  }
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "devDependencies": {
+        "@element-plus/nuxt": "^1.0.4",
+        "@nuxt/content": "^2.7.1",
+        "nuxt": "^3.6.5",
+        "nuxt-viewport": "^2.0.6"
+    },
+    "dependencies": {
+        "@amcharts/amcharts5": "^5.3.14",
+        "@nuxtjs/google-fonts": "^3.0.0",
+        "@octokit/rest": "^19.0.11",
+        "chart.js": "^4.3.0",
+        "discord.js": "^14.8.0",
+        "graphql-request": "^6.1.0",
+        "lastfm": "^0.9.4",
+        "matter-js": "^0.19.0",
+        "node-cache": "^5.1.2",
+        "nuxt-icon": "^0.3.2",
+        "poly-decomp": "^0.3.0",
+        "rehype-figure": "^1.0.1",
+        "sass": "^1.59.2",
+        "satori": "^0.4.2",
+        "unplugin-font-to-buffer": "^0.1.4",
+        "v-satori": "^0.1.9",
+        "vue-chartjs": "^5.2.0",
+        "vue-marquee-text-component": "^2.0.1"
+    }
 }
