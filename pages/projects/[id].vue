@@ -44,7 +44,8 @@
                 </div>
             </div>
             <div class="project-content">
-                <ContentRendererMarkdown :value="readme" />
+                <ContentRendererMarkdown :value="readme" v-if="readme" />
+                <ContentDoc v-else />
             </div>
             <div class="project-images" v-if="screenshotsExist">
                 <div
@@ -73,12 +74,16 @@ const project = projects.find((project) => project.id === id.value);
 if (!project) {
     throw { statusCode: 404, message: "Проект не найден" };
 }
-const { data: readme } = await useFetch("/api/github/repo", {
-    method: "GET",
-    params: {
-        project: id.value,
-    },
-});
+const readme = ref(null);
+if (!project.mdFile) {
+    const { data } = await useFetch("/api/github/repo", {
+        method: "GET",
+        params: {
+            project: id.value,
+        },
+    });
+    readme.value = data.value;
+}
 
 const screenshotsExist = computed(() => {
     return project.screenshots.length > 0;

@@ -30,7 +30,7 @@ declare interface ProjectType {
     head: string | null;
     tags: string[];
     repo: repoInfo | null;
-
+    mdFile?: boolean;
     period: string[];
     status: statuses[];
     screenshots: string[];
@@ -52,7 +52,6 @@ const projectsInfo: ProjectType[] = [
             ProjectTags.sqlalchemy,
             ProjectTags.postgresql,
         ],
-        // git: "https://github.com/semolik/music",
         repo: {
             owner: "semolik",
             name: "music",
@@ -75,7 +74,6 @@ const projectsInfo: ProjectType[] = [
             "Сайт для просмотра аниме с сервисов Animevost и Anidub",
         image: "/projects/AnimePlayer/1.png",
         tags: [ProjectTags.react, ProjectTags.flask],
-        // git: "https://github.com/Semolik/AnimePlayer",
         repo: {
             owner: "semolik",
             name: "AnimePlayer",
@@ -124,6 +122,7 @@ const projectsInfo: ProjectType[] = [
         shortDescription: "Бот для Telegram c различными функциями",
         tags: [ProjectTags.python, ProjectTags.telethon],
         repo: null,
+        mdFile: true,
         period: ["Октябрь 2020 - Октябрь 2021"],
         status: [statuses.notSupported, statuses.done],
         screenshots: [],
@@ -138,7 +137,6 @@ const projectsInfo: ProjectType[] = [
             "Машинка на радиоуправлении с Arduino и контроллером PS2",
         image: "/projects/Car/1.png",
         tags: [ProjectTags.arduino],
-        // git: "https://github.com/Semolik/Car",
         repo: {
             owner: "semolik",
             name: "Car",
