@@ -1,8 +1,5 @@
 <template>
-    <nuxt-link
-        class="project-card"
-        :to="{ name: 'projects-id', params: { id: project.id } }"
-    >
+    <nuxt-link class="project-card" :to="`projects/${project.id}`">
         <img
             class="project-card__image"
             :src="project.image"
@@ -72,7 +69,7 @@ const { project } = defineProps<Props>();
 
             height: 100%;
             .project-card__title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 font-weight: 600;
             }
             .project-card__tags {

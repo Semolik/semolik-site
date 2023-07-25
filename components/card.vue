@@ -41,7 +41,7 @@
 const props = defineProps({
     imageSize: {
         type: Number,
-        default: 80,
+        default: 90,
     },
 
     largeImage: [String, null],

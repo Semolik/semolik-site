@@ -1,6 +1,5 @@
 <template>
     <div class="app-layout">
-        <Header />
         <div class="app-content">
             <div id="activities"></div>
 

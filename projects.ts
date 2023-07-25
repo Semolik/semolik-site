@@ -154,7 +154,7 @@ const projectsInfo: ProjectType[] = [
             "Сайт для просмотра аниме с сервиса AnimeVost, один из моих первых сайтов",
         image: "/projects/AnimeVostPlayer/1.png",
         tags: [ProjectTags.javascript],
-        // git: "https://github.com/Semolik/AnimeVostPlayer",
+
         repo: {
             owner: "semolik",
             name: "AnimeVostPlayer",
@@ -176,7 +176,7 @@ const projects: projectExport[] = (projectsInfo as projectExport[]).map(
     (project) => {
         project.id = project.title.toLowerCase().replace(/\s/g, "-");
         project.git = project.repo
-            ? `https://github.com/${project.repo.owner}/${project.repo.name}`
+            ? `https://github.com/${project.repo.owner}/${project.repo.name}/`
             : null;
         return project;
     }

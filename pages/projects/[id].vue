@@ -44,12 +44,7 @@
                 </div>
             </div>
             <div class="project-content">
-                <ContentRendererMarkdown
-                    :value="readme"
-                    v-if="readme"
-                    :components="components"
-                />
-                <ContentDoc v-else />
+                <ContentDoc />
             </div>
             <div class="project-images" v-if="screenshotsExist">
                 <div
@@ -71,48 +66,14 @@
 
 <script setup>
 import { projects } from "@/projects";
-
 const { params } = useRoute();
-const id = ref(params.id);
-
-const project = projects.find((project) => project.id === id.value);
+const project = projects.find((project) => project.id === params.id);
 if (!project) {
     throw { statusCode: 404, message: "Проект не найден" };
 }
-const readme = ref(null);
-if (!project.mdFile) {
-    const { data } = await useFetch("/api/github/repo", {
-        method: "GET",
-        params: {
-            project: id.value,
-        },
-    });
-    readme.value = data.value;
-}
-
 const screenshotsExist = computed(() => {
     return project.screenshots.length > 0;
 });
-// define component a tag with replace link to repository base on project id
-
-const components = {
-    a: h((props, { slots }) => {
-        const { href } = props;
-
-        const isInternal = href.startsWith("/");
-
-        return h(
-            "a",
-            {
-                ...props,
-                href: (isInternal ? `/projects/${id.value}` : "") + href,
-                target: "_blank",
-                rel: "noopener noreferrer",
-            },
-            slots
-        );
-    }),
-};
 </script>
 <style lang="scss" scoped>
 .project-container {

@@ -28,11 +28,14 @@ export default defineNuxtConfig({
     content: {
         highlight: {
             theme: {
-                dark: "dark-plus",
+                dark: "github-dark",
                 default: "light-plus",
             },
         },
+        navigation: false,
         markdown: {
+            anchorLinks: false,
+
             rehypePlugins: {
                 "rehype-external-links": {
                     instance: rehypeExternalLinks,
@@ -48,7 +51,7 @@ export default defineNuxtConfig({
         DISCORD_SERVER_ID: process.env.DISCORD_SERVER_ID,
         DISCORD_USER_ID: process.env.DISCORD_USER_ID,
         DISCORD_SKIP_APPLICATIONS_IDS:
-            process.env.DISCORD_SKIP_APPLICATIONS_IDS,
+            process.env.DISCORD_SKIP_APPLICATIONS_IDS?.split(",") ?? [],
         LAST_FM_API_KEY: process.env.LAST_FM_API_KEY,
         LAST_FM_API_SECRET: process.env.LAST_FM_API_SECRET,
 

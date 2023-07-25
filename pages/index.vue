@@ -32,8 +32,12 @@ useHead({
             right: 100%;
             padding-left: 10px;
             width: 350px;
-
+            flex-direction: column;
             z-index: 1;
+        }
+
+        @include md(true) {
+            flex-direction: column;
         }
     }
 }

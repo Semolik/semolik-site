@@ -24,6 +24,9 @@ import { projects } from "@/projects";
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 10px;
+        @include sm(true) {
+            grid-template-columns: 1fr;
+        }
     }
     .title {
         font-size: 1.5rem;
