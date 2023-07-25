@@ -24,25 +24,6 @@
         flex-direction: column;
         padding: $padding;
         position: relative;
-
-        #activities {
-            position: absolute;
-            top: $padding;
-            right: 100%;
-            padding-left: 10px;
-            width: 350px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            z-index: 1;
-        }
-
-        @include xl(true) {
-            #activities {
-                display: none;
-            }
-        }
     }
 }
 </style>

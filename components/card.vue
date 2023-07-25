@@ -62,9 +62,7 @@ const props = defineProps({
         default: null,
     },
     details: Array,
-    imageSizePx: {
-        type: String,
-    },
+
     discord: {
         type: Boolean,
         default: false,

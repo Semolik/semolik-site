@@ -44,7 +44,11 @@
                 </div>
             </div>
             <div class="project-content">
-                <ContentDoc />
+                <ContentRenderer :value="{ body: readme }" tag="div">
+                    <template #default="{ value }">
+                        <div v-html="value.body" />
+                    </template>
+                </ContentRenderer>
             </div>
             <div class="project-images" v-if="screenshotsExist">
                 <div
@@ -73,11 +77,18 @@ const project = projects.find((project) => project.id === id.value);
 if (!project) {
     throw { statusCode: 404, message: "Проект не найден" };
 }
+const { data: readme } = await useFetch("/api/github/repo", {
+    method: "GET",
+    params: {
+        project: id.value,
+    },
+});
+
 const screenshotsExist = computed(() => {
     return project.screenshots.length > 0;
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .project-container {
     display: flex;
     flex-direction: column;
@@ -112,7 +123,7 @@ const screenshotsExist = computed(() => {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 10px;
+                gap: 5px;
                 .project-head-content-row {
                     display: flex;
                     flex-wrap: wrap;
@@ -197,13 +208,20 @@ const screenshotsExist = computed(() => {
         .project-images {
             display: grid;
             width: 100%;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: min-content;
             gap: 10px;
+            height: min-content;
+
+            @include sm(true) {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
             .project-image {
                 width: 100%;
                 height: 100%;
                 flex: 1;
                 border-radius: 10px;
+                overflow: hidden;
 
                 .el-image {
                     width: 100%;

@@ -10,4 +10,5 @@ body {
     transition: background-color 0.2s, color 0.2s, opacity 0.2s;
     scroll-behavior: smooth;
     font-family: "Open Sans", sans-serif;
+    touch-action: manipulation;
 }

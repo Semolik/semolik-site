@@ -1,22 +1,8 @@
+import rehypeExternalLinks from "rehype-external-links";
+
 export default defineNuxtConfig({
-    modules: [
-        "nuxt-icon",
-        "@nuxtjs/google-fonts",
-        "@nuxt/content",
-        "nuxt-viewport",
-    ],
-    viewport: {
-        breakpoints: {
-            xs: 360,
-            sm: 576,
-            md: 768,
-            lg: 992,
-            xl: 1200,
-            xxl: 1400,
-            xxxl: 1600,
-            xxxxl: 1900,
-        },
-    },
+    modules: ["nuxt-icon", "@nuxt/content", "@element-plus/nuxt"],
+    extends: "@nuxt-themes/typography",
     googleFonts: {
         families: {
             "Open+Sans": true,
@@ -34,7 +20,23 @@ export default defineNuxtConfig({
             },
         },
     },
-
+    content: {
+        highlight: {
+            theme: {
+                dark: "dark-plus",
+                default: "light-plus",
+            },
+        },
+        markdown: {
+            rehypePlugins: {
+                "rehype-external-links": {
+                    instance: rehypeExternalLinks,
+                    target: "_blank",
+                    rel: ["nofollow", "noopener", "noreferrer"],
+                },
+            },
+        },
+    },
     css: ["@/assets/styles/global.scss"],
     runtimeConfig: {
         DISCORD_BOT_TOKEN: process.env.DISCORD_BOT_TOKEN,

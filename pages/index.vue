@@ -1,13 +1,8 @@
 <template>
     <div class="index-page">
         <div class="activities">
-            <Teleport
-                to="#activities"
-                :disabled="$viewport.isLessThan('xxxxl')"
-            >
-                <Lastfm class="lastfm" />
-                <Discord class="discord" />
-            </Teleport>
+            <Lastfm class="lastfm" />
+            <Discord class="discord" />
         </div>
         <Codestats />
         <Projects />
@@ -31,8 +26,14 @@ useHead({
         gap: 10px;
         width: 100%;
 
-        &:empty {
-            display: none;
+        @include xxxxl {
+            position: absolute;
+            top: 10px;
+            right: 100%;
+            padding-left: 10px;
+            width: 350px;
+
+            z-index: 1;
         }
     }
 }

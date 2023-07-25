@@ -68,14 +68,18 @@ const checkScreenWidth = () => {
     isMobile.value = window.innerWidth < 768;
 };
 const chartData = computed(() => {
+    const showOnlyLast7Labels = isMobile.value && data.labels.length > 7;
     return {
-        labels: isMobile.value
+        labels: showOnlyLast7Labels
             ? data.labels.slice(data.labels.length - 7)
             : data.labels,
         datasets: data.datasets.map((dataset) => {
+            const startIndex = showOnlyLast7Labels
+                ? dataset.data.length - 7
+                : 0;
             const updatedData = dataset.data
                 .map((value) => (value === 0 ? null : value))
-                .slice(isMobile.value ? dataset.data.length - 7 : 0);
+                .slice(startIndex, startIndex + 7);
             return {
                 ...dataset,
                 data: updatedData,
