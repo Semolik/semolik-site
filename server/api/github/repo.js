@@ -1,6 +1,6 @@
 import NodeCache from "node-cache";
 import { Octokit } from "@octokit/rest";
-
+import markdownParser from "@nuxt/content/transformers/markdown";
 const octokit = new Octokit();
 const cache = new NodeCache();
 import { projects } from "@/projects";
@@ -34,6 +34,7 @@ export default defineEventHandler(async (event) => {
     );
     const base64 = data.data.content;
     const readme = Buffer.from(base64, "base64").toString("utf-8");
-    cache.set(chacheName, readme, 60 * 60 * 5);
-    return readme;
+    const parsedMarkdown = await markdownParser.parse(chacheName, readme);
+    cache.set(chacheName, parsedMarkdown.body, 60 * 60 * 5);
+    return parsedMarkdown.body;
 });

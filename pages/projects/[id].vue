@@ -44,11 +44,7 @@
                 </div>
             </div>
             <div class="project-content">
-                <ContentRenderer :value="{ body: readme }" tag="div">
-                    <template #default="{ value }">
-                        <div v-html="value.body" />
-                    </template>
-                </ContentRenderer>
+                <ContentRendererMarkdown :value="readme" />
             </div>
             <div class="project-images" v-if="screenshotsExist">
                 <div

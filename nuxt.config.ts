@@ -1,7 +1,12 @@
 import rehypeExternalLinks from "rehype-external-links";
 
 export default defineNuxtConfig({
-    modules: ["nuxt-icon", "@nuxt/content", "@element-plus/nuxt"],
+    modules: [
+        "nuxt-icon",
+        "@nuxt/content",
+        "@element-plus/nuxt",
+        "@nuxtjs/google-fonts",
+    ],
     extends: "@nuxt-themes/typography",
     googleFonts: {
         families: {
