@@ -14,30 +14,30 @@ export default defineEventHandler(async (event) => {
     }
     const data = await octokit.request("GET /users/{username}/events", {
         username: GITHUB_USERNAME,
+
         headers: {
             "X-GitHub-Api-Version": "2022-11-28",
         },
     });
     const xPollInterval = data.headers["x-poll-interval"];
-    // cache.set("github", data.data, xPollInterval);
-    const pushEvents = data.data.filter((event) => event.type === "PushEvent");
-    // const commits = pushEvents.map((event) => ({
-    //     date: event.created_at,
-    //     repo: event.repo.name,
-    //     commits: event.payload.commits.
-    // })
 
-    // get all commits with repo name
+    const pushEvents = data.data.filter((event) => event.type === "PushEvent");
+
     const commits = pushEvents.map((event) => {
         return event.payload.commits.map((commit) => ({
             date: event.created_at,
             repo: event.repo.name,
             commit: commit.message,
+            url: commit.url
+                .replace("api.github.com/repos", "github.com")
+                .replace("commits", "commit"),
         }));
     });
-    // flatten commits
-    const flattenedCommits = commits.flat();
-    cache.set("github", flattenedCommits, xPollInterval);
 
+    const flattenedCommits = commits.flat();
+    if (flattenedCommits.length > 10) {
+        flattenedCommits.length = 10;
+    }
+    cache.set("github", flattenedCommits, xPollInterval);
     return flattenedCommits;
 });

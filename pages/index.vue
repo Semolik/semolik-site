@@ -4,6 +4,9 @@
             <Lastfm class="lastfm" />
             <Discord class="discord" />
         </div>
+
+        <GithubActivity class="github-activity" />
+
         <Codestats />
         <Projects />
     </div>
@@ -21,6 +24,7 @@ useHead({
     height: 100%;
     gap: 10px;
     flex: 1;
+
     .activities {
         display: flex;
         gap: 10px;
@@ -30,14 +34,24 @@ useHead({
             position: absolute;
             top: 10px;
             right: 100%;
-            padding-left: 10px;
-            width: 350px;
+            width: 340px;
             flex-direction: column;
             z-index: 1;
         }
 
         @include md(true) {
             flex-direction: column;
+        }
+    }
+    .github-activity {
+        width: 100%;
+        @include xxxxl {
+            position: absolute;
+            left: 100%;
+            top: 10px;
+
+            width: 340px;
+            z-index: 1;
         }
     }
 }
