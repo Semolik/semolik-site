@@ -12,8 +12,6 @@ export default defineNuxtConfig({
         families: {
             "Open+Sans": true,
         },
-        // download: true,
-        // fontsDir: "~/assets/fonts",
     },
     vite: {
         css: {

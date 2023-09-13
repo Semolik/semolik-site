@@ -79,7 +79,7 @@ const imageSizePx = computed(() => props.imageSize + "px");
     background-color: $secondary-bg;
     padding: 10px;
     border-radius: 16px;
-    max-width: 350px;
+
     width: 100%;
     position: relative;
     height: min-content;

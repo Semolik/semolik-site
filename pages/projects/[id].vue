@@ -4,9 +4,8 @@
             <div class="project-head">
                 <img
                     class="project-head-image"
-                    :src="project.head"
+                    :src="project.image"
                     :alt="project.title"
-                    v-if="project.head"
                 />
                 <div class="project-head-content">
                     <div class="project-head-content-row">

@@ -54,7 +54,7 @@ onMounted(() => {
     gap: 10px;
     text-decoration: none;
     color: $text-color;
-    max-width: 350px;
+
     width: 100%;
     border-radius: 16px;
     position: relative;

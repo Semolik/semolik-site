@@ -19,11 +19,14 @@ import { projects } from "@/projects";
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     .projects-items {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+
         @include sm(true) {
             grid-template-columns: 1fr;
         }

@@ -5,7 +5,7 @@
             <Discord class="discord" />
         </div>
 
-        <GithubActivity class="github-activity" />
+        <!-- <GithubActivity class="github-activity" /> -->
 
         <Codestats />
         <Projects />
@@ -29,16 +29,6 @@ useHead({
         display: flex;
         gap: 10px;
         width: 100%;
-
-        @include xxxxl {
-            position: absolute;
-            top: 10px;
-            right: 100%;
-            width: 340px;
-            flex-direction: column;
-            z-index: 1;
-        }
-
         @include md(true) {
             flex-direction: column;
         }

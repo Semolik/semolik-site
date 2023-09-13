@@ -1,7 +1,7 @@
 <template>
     <div class="app-layout">
         <div class="app-content">
-            <div id="activities"></div>
+            <app-header />
 
             <slot />
         </div>
@@ -13,16 +13,17 @@
     flex-direction: column;
     min-height: 100vh;
     align-items: center;
-    $padding: 10px;
     .app-content {
-        max-width: 1200px;
+        max-width: $screen-md-min;
         flex: 1;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding: $padding;
+        padding: 10px;
+        padding-top: 10px;
         position: relative;
+        gap: 10px;
     }
 }
 </style>
