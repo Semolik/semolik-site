@@ -1,5 +1,5 @@
 import rehypeExternalLinks from "rehype-external-links";
-
+import { userInfo } from "@/info";
 export default defineNuxtConfig({
     modules: [
         "nuxt-icon",
@@ -13,12 +13,21 @@ export default defineNuxtConfig({
             "Open+Sans": true,
         },
     },
+    app: {
+        pageTransition: {
+            name: "slide-bottom",
+            mode: "out-in",
+        },
+    },
     vite: {
         css: {
             preprocessorOptions: {
                 scss: {
-                    additionalData:
-                        '@use "@/assets/styles/_colors.scss" as *;@use "@/assets/styles/breakpoints.scss" as *;',
+                    additionalData: [
+                        '@use "@/assets/styles/_colors.scss" as *;',
+                        '@use "@/assets/styles/breakpoints.scss" as *;',
+                        '@use "@/assets/styles/helpers.scss" as *;',
+                    ].join(""),
                 },
             },
         },

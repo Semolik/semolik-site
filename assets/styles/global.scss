@@ -12,3 +12,12 @@ body {
     font-family: "Open Sans", sans-serif;
     touch-action: manipulation;
 }
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+    transition: all 0.3s ease;
+}
+.slide-bottom-enter,
+.slide-bottom-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
