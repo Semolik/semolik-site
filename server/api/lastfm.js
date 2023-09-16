@@ -80,12 +80,10 @@ export default defineEventHandler(async (event) => {
                             }
                         }
                     }
-                    console.log(nowplaying);
                     cache.set("lastfm", nowplaying, 30);
                     return resolve(nowplaying);
                 },
                 error: function (error) {
-                    console.log("Error: " + error.message);
                     cache.set("lastfm", null, 30);
                     return resolve(null);
                 },
