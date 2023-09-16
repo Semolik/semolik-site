@@ -32,7 +32,7 @@ const { project } = defineProps<Props>();
     text-align: center;
 
     &__image {
-        border-radius: 10px;
+        border-radius: 16px;
         overflow: hidden;
         aspect-ratio: 16 / 9;
         object-fit: cover;

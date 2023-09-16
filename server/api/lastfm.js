@@ -40,6 +40,7 @@ const getTrackInfo = (artist, name) => {
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("lastfm");
     if (cachedData) {
+        console.log("cachedData", cachedData);
         return cachedData;
     }
     return new Promise(async (resolve, reject) => {
@@ -79,10 +80,12 @@ export default defineEventHandler(async (event) => {
                             }
                         }
                     }
+                    console.log(nowplaying);
                     cache.set("lastfm", nowplaying, 30);
                     return resolve(nowplaying);
                 },
                 error: function (error) {
+                    console.log("Error: " + error.message);
                     cache.set("lastfm", null, 30);
                     return resolve(null);
                 },

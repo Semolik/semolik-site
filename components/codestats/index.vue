@@ -31,8 +31,9 @@ onMounted(() => {
     flex-direction: column;
     background-color: $secondary-bg;
     border-radius: 16px;
-    padding: 10px;
+    padding: 16px;
     gap: 10px;
+    border: 1px solid $tetriary-bg;
 
     .label {
         color: $text-color-secondary;
@@ -44,7 +45,7 @@ onMounted(() => {
         text-decoration: none;
         color: $text-color-secondary;
         padding: 10px;
-        border-radius: 6px;
+        border-radius: 8px;
         background-color: $tetriary-bg;
         text-align: center;
 

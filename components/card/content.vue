@@ -1,8 +1,14 @@
 <template>
-    <div class="card">
-        <div class="discord-icon" v-if="discord" title="Discord">
-            <Icon name="ic:baseline-discord" />
+    <div class="card-head">
+        <div class="head-text">
+            {{ headText }}
         </div>
+        <div class="card-icon" v-if="props.icon">
+            <Icon :name="props.icon" />
+        </div>
+    </div>
+    <img alt="" class="bg" v-if="largeImage && bg" :src="largeImage" />
+    <div class="card-content">
         <div class="assets">
             <img
                 :src="largeImage"
@@ -12,7 +18,7 @@
                 v-if="largeImage"
             />
             <div class="large-image icon" v-else>
-                <Icon name="ic:baseline-discord" />
+                <Icon :name="props.icon" />
             </div>
             <img
                 :src="smallImage"
@@ -23,7 +29,6 @@
             />
         </div>
         <div class="info">
-            <slot name="before" />
             <div class="name ellipsis" v-if="name">
                 {{ name }}
             </div>
@@ -31,9 +36,8 @@
                 {{ detail }}
             </div>
             <div class="details">
-                <slot name="details"></slot>
+                <slot></slot>
             </div>
-            <slot name="after" />
         </div>
     </div>
 </template>
@@ -43,7 +47,10 @@ const props = defineProps({
         type: Number,
         default: 90,
     },
-
+    icon: {
+        type: String,
+        default: null,
+    },
     largeImage: [String, null],
     largeText: [String, null],
 
@@ -62,8 +69,11 @@ const props = defineProps({
         default: null,
     },
     details: Array,
-
-    discord: {
+    headText: {
+        type: String,
+        required: false,
+    },
+    bg: {
         type: Boolean,
         default: false,
     },
@@ -71,34 +81,40 @@ const props = defineProps({
 const imageSizePx = computed(() => props.imageSize + "px");
 </script>
 <style lang="scss" scoped>
-.card {
-    display: grid;
-    $image-size: v-bind(imageSizePx);
-    grid-template-columns: $image-size 1fr;
-    gap: 10px;
-    background-color: $secondary-bg;
-    padding: 10px;
-    border-radius: 16px;
-
+.bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
     width: 100%;
-    position: relative;
-    height: min-content;
-    @include lg(true) {
-        max-width: 100%;
-    }
-    .discord-icon {
+    height: 100%;
+    filter: blur(10px) brightness(0.4);
+    z-index: -1;
+    transition: filter 0.3s ease;
+}
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .card-icon {
         width: 20px;
         height: 20px;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        color: $text-color-tertiary;
+        margin-right: 5px;
+        color: $text-color-secondary;
 
         svg {
             width: 100%;
             height: 100%;
         }
     }
+
+    .head-text {
+        color: $text-color-secondary;
+    }
+}
+
+.card-content {
+    display: flex;
+    gap: 10px;
 
     .assets {
         position: relative;

@@ -1,11 +1,9 @@
 <template>
     <div class="index-page">
         <div class="activities">
-            <Lastfm class="lastfm" />
-            <Discord class="discord" />
+            <Discord />
         </div>
-
-        <!-- <GithubActivity class="github-activity" /> -->
+        <LastFm />
 
         <Codestats />
         <Projects />
