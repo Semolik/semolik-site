@@ -12,7 +12,11 @@
                         <div class="project-head-title">
                             {{ project.title }}
                         </div>
+
                         <div class="links">
+                            <div class="project-head-link period">
+                                {{ project.period }}
+                            </div>
                             <a
                                 target="_blank"
                                 class="project-head-link"
@@ -117,7 +121,6 @@ const screenshotsExist = computed(() => {
                     width: 100%;
                     @include md(true) {
                         flex-direction: column;
-                        gap: 30px;
                     }
 
                     .project-head-title {
@@ -125,7 +128,11 @@ const screenshotsExist = computed(() => {
                         font-weight: 600;
                         white-space: nowrap;
                         color: $text-color-secondary;
+                        @include md(true) {
+                            margin-bottom: 30px;
+                        }
                     }
+
                     .links {
                         display: flex;
                         flex-grow: 1;
@@ -148,17 +155,23 @@ const screenshotsExist = computed(() => {
                             @include md(true) {
                                 flex-grow: 1;
                             }
+                            min-height: 35px;
+
                             svg {
                                 width: 30px;
                                 height: 30px;
                                 color: white;
                                 transition: color 0.2s;
                             }
-                            &:hover {
+                            &:not(.period):hover {
                                 background-color: $accent-color;
                                 svg {
                                     color: black;
                                 }
+                            }
+
+                            &.period {
+                                color: $text-color-secondary;
                             }
                         }
                     }

@@ -31,7 +31,7 @@ declare interface ProjectType {
     tags: string[];
     repo: repoInfo | null;
     mdFile?: boolean;
-    period: string[];
+    period: string;
     status: statuses[];
     screenshots: string[];
     worksNow: boolean;
@@ -56,7 +56,7 @@ const projectsInfo: ProjectType[] = [
             owner: "semolik",
             name: "music",
         },
-        period: ["Ноябрь 2022 - Июнь 2023"],
+        period: "Ноябрь 2022 - Июнь 2023",
         status: [statuses.inProgress],
         screenshots: [
             "/projects/SemolikMusic/1.png",
@@ -78,11 +78,7 @@ const projectsInfo: ProjectType[] = [
             owner: "semolik",
             name: "AnimePlayer",
         },
-        period: [
-            "Январь 2022 - начало мая 2022",
-            "Июль 2022",
-            "Декабрь 2022 - январь 2023",
-        ],
+        period: "2022",
         status: [statuses.suspended],
         screenshots: [
             "/projects/AnimePlayer/1.png",
@@ -105,7 +101,7 @@ const projectsInfo: ProjectType[] = [
             owner: "semolik",
             name: "ASUtimetable",
         },
-        period: ["Ноябрь 2022"],
+        period: "2022",
         status: [statuses.notSupported],
         screenshots: [
             "/projects/ASUtimetable/1.png",
@@ -123,7 +119,7 @@ const projectsInfo: ProjectType[] = [
         tags: [ProjectTags.python, ProjectTags.telethon],
         repo: null,
         mdFile: true,
-        period: ["Октябрь 2020 - Октябрь 2021"],
+        period: "2020 - 2021",
         status: [statuses.notSupported, statuses.done],
         screenshots: [],
         worksNow: true,
@@ -132,7 +128,7 @@ const projectsInfo: ProjectType[] = [
         image: "/projects/SemolikBot/avatar.jpg",
     },
     {
-        title: "Car",
+        title: "RC-Car",
         shortDescription:
             "Машинка на радиоуправлении с Arduino и контроллером PS2",
         image: "/projects/Car/1.png",
@@ -141,7 +137,7 @@ const projectsInfo: ProjectType[] = [
             owner: "semolik",
             name: "Car",
         },
-        period: ["Январь 2023"],
+        period: "2023",
         status: [statuses.done],
         screenshots: [],
         worksNow: false,
@@ -159,7 +155,7 @@ const projectsInfo: ProjectType[] = [
             owner: "semolik",
             name: "AnimeVostPlayer",
         },
-        period: ["Ноябрь 2021 - Январь 2022"],
+        period: "2021 - 2022",
         status: [statuses.done, statuses.notSupported],
         screenshots: [
             "/projects/AnimeVostPlayer/1.png",
