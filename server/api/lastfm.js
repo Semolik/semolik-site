@@ -29,7 +29,6 @@ const getTrackInfo = (artist, name) => {
                     return resolve(data);
                 },
                 error: function (error) {
-                    console.log("Error: " + error.message);
                     return resolve(null);
                 },
             },
@@ -40,7 +39,6 @@ const getTrackInfo = (artist, name) => {
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("lastfm");
     if (cachedData) {
-        console.log("cachedData", cachedData);
         return cachedData;
     }
     return new Promise(async (resolve, reject) => {

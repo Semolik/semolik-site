@@ -2,8 +2,8 @@
     <div class="index-page">
         <div class="activities">
             <Discord />
+            <LastFm />
         </div>
-        <LastFm />
 
         <Codestats />
         <Projects />
@@ -29,17 +29,6 @@ useHead({
         width: 100%;
         @include md(true) {
             flex-direction: column;
-        }
-    }
-    .github-activity {
-        width: 100%;
-        @include xxxxl {
-            position: absolute;
-            left: 100%;
-            top: 10px;
-
-            width: 340px;
-            z-index: 1;
         }
     }
 }
