@@ -2,7 +2,7 @@
     <div class="app-layout">
         <div class="app-content">
             <app-header />
-
+            <nuxt-loading-indicator />
             <slot />
         </div>
     </div>

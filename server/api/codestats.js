@@ -49,27 +49,23 @@ export default defineEventHandler(async (event) => {
                 data.profile.dayLanguageXps.filter((item) => item.date === date)
             ),
         }));
-
         const languages = [
             ...new Set(
                 data.profile.dayLanguageXps.map((item) => item.language)
             ),
         ].sort();
         const responce = {
-            labels: sortedDates,
+            labels: sortedDates.map((date) =>
+                new Date(date).toLocaleDateString("ru-RU", {
+                    month: "short",
+                    day: "numeric",
+                })
+            ),
             datasets: languages.map((language) => ({
                 label: language,
                 data: days.map((day) => day.languages[language] || 0),
             })),
         };
-
-        if (
-            responce.datasets.every((dataset) =>
-                dataset.data.every((data) => data === 0)
-            )
-        ) {
-            return null;
-        }
         cache.set("codestats", responce, 30);
         return responce;
     } catch (error) {
