@@ -1,10 +1,10 @@
 <template>
     <div class="index-page">
+        <Info />
         <div class="activities">
             <Discord />
             <LastFm />
         </div>
-
         <Codestats />
         <Projects />
     </div>

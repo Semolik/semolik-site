@@ -177,4 +177,5 @@ const projects: projectExport[] = (projectsInfo as projectExport[]).map(
         return project;
     }
 );
-export { projects, projectExport, ProjectTags, statuses };
+export { projects, ProjectTags, statuses };
+export type { projectExport };

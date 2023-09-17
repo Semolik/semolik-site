@@ -14,35 +14,6 @@
             <div class="app-header__link">
                 <Icon name="ph:list" />
             </div>
-            <!-- <div class="links">
-            <a
-                target="_blank"
-                class="app-header__link"
-                v-if="userInfo.github"
-                :href="userInfo.github"
-            >
-                <Icon name="mdi:github" />
-            </a>
-            <a target="_blank" class="app-header__link" v-if="userInfo.discord">
-                <Icon name="ic:baseline-discord" />
-            </a>
-            <a
-                target="_blank"
-                class="app-header__link"
-                v-if="userInfo.telegram"
-                :href="userInfo.telegram"
-            >
-                <Icon name="mdi:telegram" />
-            </a>
-            <a
-                target="_blank"
-                class="app-header__link"
-                v-if="userInfo.vk"
-                :href="userInfo.vk"
-            >
-                <Icon name="mdi:vk" />
-            </a>
-        </div> -->
         </div>
     </div>
 </template>

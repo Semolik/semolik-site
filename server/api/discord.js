@@ -7,24 +7,20 @@ const {
     DISCORD_SKIP_APPLICATIONS_IDS,
 } = useRuntimeConfig();
 const cache = new NodeCache();
-
+const client = new Discord.Client({
+    intents: [
+        Discord.GatewayIntentBits.Guilds,
+        Discord.GatewayIntentBits.GuildMembers,
+        Discord.GatewayIntentBits.GuildPresences,
+    ],
+});
+client.login(DISCORD_BOT_TOKEN);
 export default defineEventHandler(async (event) => {
     const cachedData = cache.get("activities");
     if (cachedData) {
         return cachedData;
     }
-    const client = new Discord.Client({
-        intents: [
-            Discord.GatewayIntentBits.Guilds,
-            Discord.GatewayIntentBits.GuildMembers,
-            Discord.GatewayIntentBits.GuildMessages,
-            Discord.GatewayIntentBits.GuildMessageReactions,
-            Discord.GatewayIntentBits.GuildPresences,
-        ],
-    });
-
     try {
-        await client.login(DISCORD_BOT_TOKEN);
         const guild = await client.guilds.fetch(DISCORD_SERVER_ID, {
             chache: true,
             cacheMaxAge: 6000,
@@ -49,15 +45,17 @@ export default defineEventHandler(async (event) => {
         let activity = activities[0];
         for (let imageKey of ["largeImage", "smallImage"]) {
             if (activity.assets[imageKey]) {
-                activity.assets[
-                    imageKey
-                ] = `https://cdn.discordapp.com/app-assets/${activity.applicationId}/${activity.assets[imageKey]}`;
+                activity.assets[imageKey] = activity.assets[imageKey].includes(
+                    "http"
+                )
+                    ? activity.assets[imageKey]
+                    : `https://cdn.discordapp.com/app-assets/${activity.applicationId}/${activity.assets[imageKey]}`;
             }
         }
-
         cache.set("activities", activity, 30);
         return activity;
-    } catch {
+    } catch (e) {
+        console.log("Discord error", e);
         cache.set("activities", null, 30);
         return null;
     }
