@@ -43,7 +43,6 @@ export default defineNuxtConfig({
                 default: "light-plus",
             },
         },
-        navigation: false,
         markdown: {
             anchorLinks: false,
 
