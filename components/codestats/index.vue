@@ -78,8 +78,11 @@ const chartData = computed(() => {
     };
 });
 const isEmpty = computed(() => {
-    return chartData.value.datasets.every((dataset) =>
-        dataset.data.every((value) => value === null)
+    return (
+        chartData.value &&
+        chartData.value.datasets.every((dataset) =>
+            dataset.data.every((value) => value === null)
+        )
     );
 });
 onMounted(() => {

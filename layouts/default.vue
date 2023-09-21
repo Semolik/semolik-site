@@ -4,9 +4,19 @@
             <app-header />
             <nuxt-loading-indicator />
             <slot />
+            <app-footer />
         </div>
     </div>
 </template>
+<script setup>
+import { userInfo } from "@/info";
+const description = `${userInfo.name}'s Portfolio`;
+useSeoMeta({
+    description: description,
+    ogDescription: description,
+    ogImage: "https://example.com/image.png",
+});
+</script>
 <style lang="scss">
 .app-layout {
     display: flex;

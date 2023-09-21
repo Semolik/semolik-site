@@ -20,18 +20,18 @@
                             <a
                                 target="_blank"
                                 class="project-head-link"
-                                :href="project.url"
-                                v-if="project.url"
-                            >
-                                <Icon name="mdi:link" />
-                            </a>
-                            <a
-                                target="_blank"
-                                class="project-head-link"
                                 :href="project.git"
                                 v-if="project.git"
                             >
                                 <Icon name="mdi:github" />
+                            </a>
+                            <a
+                                target="_blank"
+                                class="project-head-link"
+                                :href="project.url"
+                                v-if="project.url"
+                            >
+                                <Icon name="mdi:link" />
                             </a>
                         </div>
                     </div>
@@ -42,6 +42,20 @@
                             class="project-head-tag"
                         >
                             {{ tag }}
+                        </div>
+                    </div>
+                    <div class="project-statuses">
+                        <div
+                            v-for="status in project.status"
+                            :key="status"
+                            :class="[
+                                'project-status',
+                                Object.keys(statuses).find(
+                                    (key) => statuses[key] === status
+                                ),
+                            ]"
+                        >
+                            {{ status }}
                         </div>
                     </div>
                 </div>
@@ -68,7 +82,7 @@
 </template>
 
 <script setup>
-import { projects } from "@/projects";
+import { projects, statuses } from "@/projects";
 const { params } = useRoute();
 const project = projects.find((project) => project.id === params.id);
 if (!project) {
@@ -194,6 +208,44 @@ const screenshotsExist = computed(() => {
                         white-space: nowrap;
                         background-color: $accent-color;
                         color: black;
+                    }
+                }
+
+                .project-statuses {
+                    display: flex;
+                    width: 100%;
+                    flex-wrap: wrap;
+                    gap: 5px;
+
+                    .project-status {
+                        @include md(true) {
+                            flex-grow: 1;
+                        }
+
+                        display: flex;
+                        justify-content: center;
+                        padding: 3px 20px;
+                        border-radius: 10px;
+                        white-space: nowrap;
+
+                        &.inProgress {
+                            background-color: $accent-green;
+                            color: black;
+                        }
+
+                        &.done {
+                            background-color: $quaternary-bg;
+                        }
+
+                        &.notSupported {
+                            background-color: $accent-red;
+                            color: black;
+                        }
+
+                        &.suspended {
+                            background-color: $accent-yellow;
+                            color: black;
+                        }
                     }
                 }
             }

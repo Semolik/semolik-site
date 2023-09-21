@@ -11,16 +11,37 @@
             <nuxt-link to="/" class="app-header__title">
                 {{ userInfo.name }}
             </nuxt-link>
-            <div class="app-header__link">
-                <Icon name="ph:list" />
+            <div class="app-header__link" @click="aboutOpened = true">
+                <Icon name="material-symbols:info" />
             </div>
+            <Modal v-model:active="aboutOpened">
+                <template #content>
+                    <div class="about">
+                        <h2>О сайте</h2>
+                        <p>
+                            Это небольшой сайт-портфолио с моими проектами. Он
+                            будет периодически обновляться, ну я на это надеюсь.
+                        </p>
+                    </div>
+                </template>
+            </Modal>
         </div>
     </div>
 </template>
 <script setup>
 import { userInfo } from "@/info";
+const aboutOpened = ref(false);
 </script>
 <style lang="scss" scoped>
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h2 {
+        text-align: center;
+        font-size: 20px;
+    }
+}
 .app-header-container {
     display: flex;
     justify-content: center;
@@ -65,14 +86,11 @@ import { userInfo } from "@/info";
     }
 
     &__title {
-        // font-weight: 600;
         color: $text-color;
         font-size: 20px;
     }
     .links {
         display: flex;
-
-        // justify-content: flex-end;
         gap: 10px;
     }
 }

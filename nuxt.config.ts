@@ -1,5 +1,4 @@
 import rehypeExternalLinks from "rehype-external-links";
-import { userInfo } from "@/info";
 export default defineNuxtConfig({
     modules: [
         "nuxt-icon",
@@ -17,6 +16,11 @@ export default defineNuxtConfig({
         pageTransition: {
             name: "slide-bottom",
             mode: "out-in",
+        },
+        head: {
+            charset: "utf-8",
+            viewport: "width=device-width, initial-scale=1",
+            meta: [{ name: "description", content: `Semolik's portfolio` }],
         },
     },
     vite: {

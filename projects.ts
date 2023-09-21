@@ -34,7 +34,6 @@ declare interface ProjectType {
     period: string;
     status: statuses[];
     screenshots: string[];
-    worksNow: boolean;
     url: string | null;
 }
 interface projectExport extends ProjectType {
@@ -65,7 +64,6 @@ const projectsInfo: ProjectType[] = [
             "/projects/SemolikMusic/4.png",
         ],
         url: null,
-        worksNow: false,
         head: null,
     },
     {
@@ -79,7 +77,7 @@ const projectsInfo: ProjectType[] = [
             name: "AnimePlayer",
         },
         period: "2022",
-        status: [statuses.suspended],
+        status: [statuses.notSupported, statuses.suspended],
         screenshots: [
             "/projects/AnimePlayer/1.png",
             "/projects/AnimePlayer/2.png",
@@ -87,7 +85,6 @@ const projectsInfo: ProjectType[] = [
             "/projects/AnimePlayer/4.png",
             "/projects/AnimePlayer/5.png",
         ],
-        worksNow: true,
         url: "https://anime.semolik.ru",
         head: null,
     },
@@ -109,7 +106,6 @@ const projectsInfo: ProjectType[] = [
             "/projects/ASUtimetable/3.png",
             "/projects/ASUtimetable/4.png",
         ],
-        worksNow: false,
         url: null,
         head: null,
     },
@@ -122,7 +118,6 @@ const projectsInfo: ProjectType[] = [
         period: "2020 - 2021",
         status: [statuses.notSupported, statuses.done],
         screenshots: [],
-        worksNow: true,
         url: "https://t.me/Semolik_bot",
         head: "/projects/SemolikBot/slider.png",
         image: "/projects/SemolikBot/avatar.jpg",
@@ -140,7 +135,6 @@ const projectsInfo: ProjectType[] = [
         period: "2023",
         status: [statuses.done],
         screenshots: [],
-        worksNow: false,
         url: null,
         head: "/projects/Car/slider.png",
     },
@@ -163,7 +157,6 @@ const projectsInfo: ProjectType[] = [
             "/projects/AnimeVostPlayer/3.png",
             "/projects/AnimeVostPlayer/4.png",
         ],
-        worksNow: true,
         url: "https://old-anime-player.semolik.ru",
         head: null,
     },

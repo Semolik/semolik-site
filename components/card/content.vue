@@ -113,7 +113,8 @@ const imageSizePx = computed(() => props.imageSize + "px");
 }
 
 .card-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: v-bind(imageSizePx) 1fr;
     gap: 10px;
 
     .assets {
@@ -127,6 +128,7 @@ const imageSizePx = computed(() => props.imageSize + "px");
             border-radius: 8px;
             object-fit: cover;
             background-color: $tetriary-bg;
+            aspect-ratio: 1;
             &.icon {
                 display: flex;
                 justify-content: center;

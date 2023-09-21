@@ -2,42 +2,17 @@
     <div class="user-info">
         <img src="avatar.webp" class="avatar" />
         <div class="links">
-            <a
-                :href="userInfo.github"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-if="userInfo.github"
-                class="link"
-            >
-                <Icon name="akar-icons:github-fill" />
-            </a>
-            <a
-                :href="userInfo.telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-if="userInfo.telegram"
-                class="link"
-            >
-                <Icon name="akar-icons:telegram-fill" />
-            </a>
-            <a
-                :href="userInfo.vk"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-if="userInfo.vk"
-                class="link"
-            >
-                <Icon name="akar-icons:vk-fill" />
-            </a>
-            <div
-                :href="userInfo.discord"
-                target="_blank"
-                rel="noopener noreferrer"
-                v-if="userInfo.discord"
-                class="link"
-            >
-                <Icon name="akar-icons:discord-fill" />
-            </div>
+            <InfoItem :link="userInfo.github" icon="akar-icons:github-fill" />
+            <InfoItem
+                :link="userInfo.telegram"
+                icon="akar-icons:telegram-fill"
+            />
+            <InfoItem :link="userInfo.steam" icon="bi:steam" />
+            <InfoItem
+                :link="userInfo.discord"
+                icon="akar-icons:discord-fill"
+                copy
+            />
         </div>
     </div>
 </template>
@@ -65,24 +40,6 @@ import { userInfo } from "@/info";
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-
-        .link {
-            @include flex-center;
-            background: $secondary-bg;
-            border-radius: 16px;
-            transition: 0.2s ease-in-out;
-            border: 1px solid $tetriary-bg;
-
-            svg {
-                color: $text-color;
-                height: 40%;
-                width: 40%;
-            }
-
-            @include has-hover {
-                background: $quaternary-bg;
-            }
-        }
     }
 }
 </style>
