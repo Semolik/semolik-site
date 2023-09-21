@@ -1,6 +1,6 @@
 <template>
     <div class="user-info">
-        <img src="avatar.webp" class="avatar" />
+        <img src="/avatar.webp" class="avatar" />
         <div class="links">
             <InfoItem :link="userInfo.github" icon="akar-icons:github-fill" />
             <InfoItem
