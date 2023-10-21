@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link class="project-card" :to="`projects/${project.id}`">
+    <nuxt-link class="project-card" :to="`/projects/${project.id}`">
         <img
             class="project-card__image"
             :src="project.image"
