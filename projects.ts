@@ -56,7 +56,7 @@ const projectsInfo: ProjectType[] = [
             name: "music",
         },
         period: "Ноябрь 2022 - Июнь 2023",
-        status: [statuses.inProgress],
+        status: [statuses.done],
         screenshots: [
             "/projects/SemolikMusic/1.png",
             "/projects/SemolikMusic/2.png",
