@@ -77,7 +77,7 @@ const projectsInfo: ProjectType[] = [
             name: "AnimePlayer",
         },
         period: "2022",
-        status: [statuses.notSupported, statuses.suspended],
+        status: [statuses.notSupported],
         screenshots: [
             "/projects/AnimePlayer/1.png",
             "/projects/AnimePlayer/2.png",
