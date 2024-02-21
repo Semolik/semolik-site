@@ -37,6 +37,7 @@ const { project } = defineProps<Props>();
         aspect-ratio: 16 / 9;
         object-fit: cover;
         user-select: none;
+        background-color: rgba($color: white, $alpha: 0.1);
     }
     &__content {
         padding: 10px;

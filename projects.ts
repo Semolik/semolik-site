@@ -17,6 +17,7 @@ enum ProjectTags {
     redis = "Redis",
     vue = "Vue.js",
     arduino = "Arduino",
+    electron = "Electron",
 }
 declare interface repoInfo {
     owner: string;
@@ -41,6 +42,27 @@ interface projectExport extends ProjectType {
     git: string | null;
 }
 const projectsInfo: ProjectType[] = [
+    {
+        title: "Lastfm discord status",
+        shortDescription:
+            "Приложение для трансляции текущей песни с Last.fm в дискорд-активность",
+        image: "/projects/lastfm-discord-status/3.png",
+        tags: [ProjectTags.nuxt, ProjectTags.electron],
+        repo: {
+            owner: "semolik",
+            name: "lastfm-discord-status",
+        },
+        period: "Январь 2024",
+        status: [statuses.suspended],
+        screenshots: [
+            "/projects/lastfm-discord-status/1.png",
+            "/projects/lastfm-discord-status/2.png",
+            "/projects/lastfm-discord-status/3.png",
+            "/projects/lastfm-discord-status/4.png",
+        ],
+        url: null,
+        head: null,
+    },
     {
         title: "Semolik music",
         shortDescription: "Музыкальный сервис для начинающих музыкантов",
