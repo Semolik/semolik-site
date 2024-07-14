@@ -34,7 +34,7 @@ import { userInfo } from "@/info";
         object-fit: cover;
         border: 1px solid $tetriary-bg;
         border-radius: 16px;
-        height: 100%;
+
         aspect-ratio: 1;
     }
 
