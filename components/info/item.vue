@@ -39,10 +39,22 @@ const copyText = () => {
 
     svg {
         color: $text-color;
-        height: 40%;
-        width: 40%;
+        height: 30%;
+        width: 30%;
     }
-
+    @include xs(true) {
+        svg {
+            height: auto;
+            width: auto;
+        }
+    }
+    @include sm(true) {
+        min-height: 70px;
+        svg {
+            height: 40px;
+            width: 40px;
+        }
+    }
     @include has-hover {
         background: $quaternary-bg;
     }

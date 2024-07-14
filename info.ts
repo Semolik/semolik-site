@@ -2,14 +2,14 @@ declare type UserInfo = {
     name: string;
     github: string | null;
     discord: string | null;
-    steam: string | null;
+    vk: string | null;
     telegram: string | null;
 };
 
 export const userInfo: UserInfo = {
-    name: "Semolik",
+    name: "Семен Арапов",
     github: "https://github.com/semolik",
     discord: "Semolik",
-    steam: "https://steamcommunity.com/id/Semolik/",
+    vk: "https://vk.com/semolik",
     telegram: "https://t.me/semolik",
 };
