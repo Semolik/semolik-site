@@ -18,6 +18,7 @@ enum ProjectTags {
     vue = "Vue.js",
     arduino = "Arduino",
     electron = "Electron",
+    celery = "Celery",
 }
 declare interface repoInfo {
     owner: string;
@@ -42,6 +43,35 @@ interface projectExport extends ProjectType {
     git: string | null;
 }
 const projectsInfo: ProjectType[] = [
+    {
+        title: "AnimePlayer v2",
+        shortDescription:
+            "Переработанная версия AnimePlayer с новым функционалом",
+        image: "/projects/AnimePlayer-v2/title.png",
+        tags: [
+            ProjectTags.nuxt,
+            ProjectTags.fastapi,
+            ProjectTags.redis,
+            ProjectTags.sqlalchemy,
+            ProjectTags.celery,
+            ProjectTags.postgresql,
+        ],
+        repo: {
+            owner: "semolik",
+            name: "AnimePlayer",
+        },
+        period: "Август - Октябрь 2024",
+        status: [statuses.suspended],
+        screenshots: [
+            "/projects/AnimePlayer-v2/1.png",
+            "/projects/AnimePlayer-v2/2.png",
+            "/projects/AnimePlayer-v2/3.png",
+            "/projects/AnimePlayer-v2/4.png",
+            "/projects/AnimePlayer-v2/5.png",
+        ],
+        url: "https://anime.semolik.ru",
+        head: null,
+    },
     {
         title: "Lastfm discord status",
         shortDescription:
