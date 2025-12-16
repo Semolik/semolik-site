@@ -7,12 +7,7 @@
                 :link="userInfo.telegram"
                 icon="akar-icons:telegram-fill"
             />
-            <InfoItem :link="userInfo.vk" icon="mdi:vk" />
-            <InfoItem
-                :link="userInfo.discord"
-                icon="akar-icons:discord-fill"
-                copy
-            />
+            <InfoItem :link="userInfo.vk" icon="mdi:vk" style="grid-column: span 2;" />
         </div>
     </div>
 </template>

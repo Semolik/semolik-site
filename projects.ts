@@ -44,6 +44,65 @@ interface projectExport extends ProjectType {
 }
 const projectsInfo: ProjectType[] = [
     {
+        title: "Planner",
+        shortDescription:
+            "Система управления задачами и мероприятиями для студенческого медиа-объединения",
+        image: "/projects/planner/1.png",
+        tags: [
+            ProjectTags.nuxt,
+            ProjectTags.fastapi,
+            ProjectTags.sqlalchemy,
+            ProjectTags.postgresql,
+            ProjectTags.redis,
+        ],
+        repo: {
+            owner: "Semolik",
+            name: "planner",
+        },
+        mdFile: true,
+        period: "2024 - 2025",
+        status: [statuses.inProgress],
+        screenshots: [
+            "/projects/planner/1.png",
+            "/projects/planner/2.png",
+            "/projects/planner/3.png",
+            "/projects/planner/4.png",
+            "/projects/planner/5.png",
+            "/projects/planner/6.png",
+        ],
+        url: null,
+        head: null,
+    },
+    {
+        title: "IF-ELSE AGGREGATOR",
+        shortDescription:
+            "Платформа для поиска, организации и участия в образовательных и научных мероприятиях",
+        image: "/projects/if-else-aggregator/1.jpg",
+        tags: [
+            ProjectTags.nuxt,
+            ProjectTags.fastapi,
+            ProjectTags.sqlalchemy,
+            ProjectTags.postgresql,
+        ],
+        repo: {
+            owner: "Semolik",
+            name: "if-else-aggregator",
+        },
+        mdFile: true,
+        period: "Май 2025",
+        status: [statuses.done],
+        screenshots: [
+            "/projects/if-else-aggregator/1.jpg",
+            "/projects/if-else-aggregator/2.png",
+            "/projects/if-else-aggregator/3.png",
+            "/projects/if-else-aggregator/4.png",
+            "/projects/if-else-aggregator/5.png",
+            "/projects/if-else-aggregator/6.png",
+        ],
+        url: null,
+        head: null,
+    },
+    {
         title: "AnimePlayer v2",
         shortDescription:
             "Переработанная версия AnimePlayer с новым функционалом",
@@ -69,7 +128,7 @@ const projectsInfo: ProjectType[] = [
             "/projects/AnimePlayer-v2/4.png",
             "/projects/AnimePlayer-v2/5.png",
         ],
-        url: "https://anime.semolik.ru",
+        url: null,
         head: null,
     },
     {
@@ -137,7 +196,7 @@ const projectsInfo: ProjectType[] = [
             "/projects/AnimePlayer/4.png",
             "/projects/AnimePlayer/5.png",
         ],
-        url: "https://anime.semolik.ru",
+        url: null,
         head: null,
     },
     {
