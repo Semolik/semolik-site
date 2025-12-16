@@ -1,6 +1,6 @@
 <template>
     <div class="user-info">
-        <img src="/avatar.jpg" class="avatar" />
+        <img src="/avatar.jpg" class="avatar" alt="Аватар" />
         <div class="links">
             <InfoItem :link="userInfo.github" icon="akar-icons:github-fill" />
             <InfoItem
@@ -34,8 +34,8 @@ import { userInfo } from "@/info";
     }
 
     .links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+
         gap: 10px;
         @include sm(true) {
             @include xs {

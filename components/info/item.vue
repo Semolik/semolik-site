@@ -36,6 +36,7 @@ const copyText = () => {
     border-radius: 16px;
     transition: 0.2s ease-in-out;
     border: 1px solid $tetriary-bg;
+    flex-grow: 1;
 
     svg {
         color: $text-color;

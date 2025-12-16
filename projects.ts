@@ -47,7 +47,7 @@ const projectsInfo: ProjectType[] = [
         title: "Planner",
         shortDescription:
             "Система управления задачами и мероприятиями для студенческого медиа-объединения",
-        image: "/projects/planner/1.png",
+        image: "/projects/planner/2.png",
         tags: [
             ProjectTags.nuxt,
             ProjectTags.fastapi,
